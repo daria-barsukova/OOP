@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"ru.nsu.barsukova","c":"heapsort","l":"heapsort()","url":"%3Cinit%3E()"}]
