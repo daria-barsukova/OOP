@@ -1,10 +1,14 @@
 package ru.nsu.barsukova;
 
 /**
- * task-1-1-1 heapsort
+ * task-1-1-1 heapsort.
+ *
+ * @author Daria Barsukova
+ *
+ * @version 1.0
  */
 
-public class heapsort {
+public class Heapsort {
 
     static int[] sort(int[] arr) {
         int n = arr.length;
@@ -21,7 +25,10 @@ public class heapsort {
     }
 
     static void increaseHeap(int[] arr, int n, int i) {
-        int max = i, left, right, tmp;
+        int max = i;
+        int left;
+        int right;
+        int tmp;
         left = 2 * i + 1;
         right = 2 * i + 2;
         if (left < n && arr[left] > arr[max]) {          // left child is bigger than root
