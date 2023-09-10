@@ -5,7 +5,7 @@ package ru.nsu.barsukova;
  */
 
 public class heapsort {
-
+    
     static int[] sort(int[] arr) {
         int n = arr.length;
         for (int i = n / 2 - 1; i >= 0; i--) {          // heap formation
