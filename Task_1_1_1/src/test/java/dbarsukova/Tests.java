@@ -1,4 +1,4 @@
-package ru.nsu.barsukova;
+package dbarsukova;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.fail;

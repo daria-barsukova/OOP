@@ -1,11 +1,7 @@
-package ru.nsu.barsukova;
+package dbarsukova;
 
 /**
  * task-1-1-1 heapsort.
- *
- * @author Daria Barsukova
- *
- * @version 1.0
  */
 
 public class Heapsort {
