@@ -11,8 +11,9 @@ public class Heapsort {
      * initially, we regroup array to build a heap.
      * then we extract elements one by one, move current root to the end.
      * call the `increaseHeap` function on reduced heap.
-     * 
+     *
      * @param array for sorting
+     *              
      */
 
     static int[] sort(int[] arr) {
