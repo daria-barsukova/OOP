@@ -20,7 +20,7 @@ public class Heapsort {
         return arr;
     }
 
-    static void increaseHeap(int[] arr, int n, int i) {
+    private static void increaseHeap(int[] arr, int n, int i) {
         int max = i;
         int left;
         int right;
