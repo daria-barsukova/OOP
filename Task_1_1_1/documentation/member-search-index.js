@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"dbarsukova","c":"Heapsort","l":"Heapsort()","u":"%3Cinit%3E()"}];updateSearchResults();

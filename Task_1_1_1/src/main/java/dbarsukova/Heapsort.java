@@ -6,12 +6,20 @@ package dbarsukova;
 
 public class Heapsort {
 
+    /**
+     * `sort` is a method that implements pyramid sorting.
+     * initially, we regroup array to build a heap.
+     * then we extract elements one by one, move current root to the end.
+     * call the `increaseHeap` function on reduced heap.
+     * @param array for sorting
+     */
+
     static int[] sort(int[] arr) {
         int n = arr.length;
-        for (int i = n / 2 - 1; i >= 0; i--) {          // heap formation
+        for (int i = n / 2 - 1; i >= 0; i--) {
             increaseHeap(arr, n, i);
         }
-        for (int i = n - 1; i >= 0; i--) {              // alternate extraction of elements
+        for (int i = n - 1; i >= 0; i--) {
             int tmp = arr[0];
             arr[0] = arr[i];
             arr[i] = tmp;
