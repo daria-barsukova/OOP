@@ -6,6 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 
 
+/**
+ * task-1-1-2 test.
+ */
+
 public class Tests {
 
     @Test
@@ -46,7 +50,7 @@ public class Tests {
     @Test
     void test6() {
         Polynomial p1 = new Polynomial(new int[]{6, 0, -3, 5, -6});
-        assertEquals(p1.differentiate(3).toString(), "144x + 30");
+        assertEquals(p1.differentiate(-1).toString(), "144x + 30");
     }
 
     @Test

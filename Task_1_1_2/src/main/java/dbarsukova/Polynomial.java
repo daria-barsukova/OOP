@@ -1,6 +1,8 @@
 package dbarsukova;
 
 import java.util.Objects;
+
+
 /**
  * task-1-1-2 operations with polynomials.
  */
@@ -16,7 +18,9 @@ public class Polynomial {
      */
     public Polynomial(int[] args) {
         degree = args.length;
-        if (degree == 0) System.out.println("empty array");
+        if (degree == 0) {
+            System.out.println("empty array");
+        }
         coef = args;
     }
 
@@ -29,8 +33,12 @@ public class Polynomial {
         int newDegree = Math.max(this.degree, term.degree);
         int[] newCoef = new int[newDegree];
         for (int i = 0; i < newDegree; i++) {
-            if (i < this.degree) newCoef[i] += this.coef[i];
-            if (i < term.degree) newCoef[i] += term.coef[i];
+            if (i < this.degree) {
+                newCoef[i] += this.coef[i];
+            }
+            if (i < term.degree) {
+                newCoef[i] += term.coef[i];
+            }
         }
         return new Polynomial(newCoef);
     }
@@ -84,8 +92,12 @@ public class Polynomial {
      * @param i order of derivative.
      */
     public Polynomial differentiate(int i) {
-        if (i <= 0) return this;
-        if (this.degree - 1 < i) return new Polynomial(new int[]{0});
+        if (i <= 0) {
+            return this;
+        }
+        if (this.degree - 1 < i) {
+            return new Polynomial(new int[]{0});
+        }
         int[] newCoef = new int[this.degree - i];
         int newDegree = newCoef.length;
         int order = i;
@@ -105,9 +117,13 @@ public class Polynomial {
      * @param term the second polynomial.
      */
     public boolean equality(Polynomial term) {
-        if (this.degree != term.degree) return false;
+        if (this.degree != term.degree) {
+            return false;
+        }
         for (int i = 0; i < this.degree; i++) {
-            if (this.coef[i] != term.coef[i]) return false;
+            if (this.coef[i] != term.coef[i]) {
+                return false;
+            }
         }
         return true;
     }
@@ -137,8 +153,12 @@ public class Polynomial {
                     ans += "x^";
                     ans += String.format("%s", newDegree);
                 }
-                if (newDegree == 1) ans += "x";
-                if (newDegree < 1) newDegree--;
+                if (newDegree == 1) {
+                    ans += "x";
+                }
+                if (newDegree < 1) {
+                    newDegree--;
+                }
             }
             order--;
         }
