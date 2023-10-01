@@ -1,7 +1,6 @@
 package dbarsukova;
 
 import java.util.Objects;
-
 /**
  * task-1-1-2 operations with polynomials.
  */
@@ -124,25 +123,25 @@ public class Polynomial {
      * gets a string representation of a polynomial.
      */
     public String toString() {
-        StringBuilder ans = new StringBuilder();
+        String ans = "";
         int newDegree = this.degree;
         int order = newDegree - 1;
         while (order >= 0) {
             if (this.coef[order] != 0) {
                 if (newDegree != this.degree) {
-                    ans.append(this.coef[order] > 0 ? " + " : " - ");
+                    ans += (this.coef[order] > 0 ? " + " : " - ");
                 }
                 newDegree--;
-                ans.append(String.format("%d", Math.abs(this.coef[order])));
+                ans += String.format("%d", Math.abs(this.coef[order]));
                 if (newDegree > 1) {
-                    ans.append("x^");
-                    ans.append(String.format("%s", newDegree));
+                    ans += "x^";
+                    ans += String.format("%s", newDegree);
                 }
-                if (newDegree == 1) ans.append("x");
+                if (newDegree == 1) ans += "x";
                 if (newDegree < 1) newDegree--;
             }
             order--;
         }
-        return (ans.isEmpty()) ? "0" : ans.toString();
+        return ans.isEmpty() ? "0" : ans;
     }
 }
