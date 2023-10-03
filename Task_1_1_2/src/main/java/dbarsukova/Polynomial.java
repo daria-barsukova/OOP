@@ -116,12 +116,17 @@ public class Polynomial {
      *
      * @param term the second polynomial.
      */
-    public boolean equality(Polynomial term) {
-        if (this.degree != term.degree) {
+    @Override
+    public boolean equals(Object term) {
+        Polynomial p = (Polynomial) term;
+        if (this.getClass() != term.getClass()) {
+            return false;
+        }
+        if (this.degree != p.degree) {
             return false;
         }
         for (int i = 0; i < this.degree; i++) {
-            if (this.coef[i] != term.coef[i]) {
+            if (this.coef[i] != p.coef[i]) {
                 return false;
             }
         }
@@ -131,6 +136,7 @@ public class Polynomial {
     /**
      * recommended redefinition of `hashCode` method.
      */
+    @Override
     public int hashCode() {
         return Objects.hash(this.coef);
     }

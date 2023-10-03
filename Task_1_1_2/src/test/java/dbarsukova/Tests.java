@@ -57,6 +57,6 @@ public class Tests {
     void test7() {
         Polynomial p1 = new Polynomial(new int[]{4, 5, 6});
         Polynomial p2 = new Polynomial(new int[]{4, 6, 5});
-        assertFalse(p1.equality(p2));
+        assertFalse(p1.equals(p2));
     }
 }
