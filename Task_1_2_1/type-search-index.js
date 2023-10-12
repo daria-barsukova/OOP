@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"dbarsukova","l":"Tree.dfsOrBfs"},{"p":"dbarsukova","l":"Tree.Iterate"},{"p":"dbarsukova","l":"Tree"}]
