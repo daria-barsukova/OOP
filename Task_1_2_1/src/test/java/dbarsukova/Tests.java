@@ -1,11 +1,14 @@
 package dbarsukova;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * task-1-2-1 test.
@@ -99,7 +102,7 @@ public class Tests {
         treeE.addChild("H");
         treeE.addChild("K");
         String[] array = {"A", "B", "C", "D", "E", "F", "G", "H", "K"};
-        Iterator<String> iter = treeA.iterator(Tree.dfsOrBfs.BFS);
+        Iterator<String> iter = treeA.iterator(Tree.Type.BFS);
         for (String s : array) {
             assertTrue(iter.hasNext());
             assertEquals(iter.next(), s);
@@ -119,7 +122,7 @@ public class Tests {
         treeE.addChild(8);
         treeE.addChild(9);
         Integer[] array = {4, 2, 3, 10, 7, 5, 8, 9, 1, 6};
-        Iterator<Integer> iterator = treeA.iterator(Tree.dfsOrBfs.DFS);
+        Iterator<Integer> iterator = treeA.iterator(Tree.Type.DFS);
         for (Integer s : array) {
             assertTrue(iterator.hasNext());
             assertEquals(iterator.next(), s);
@@ -131,7 +134,7 @@ public class Tests {
         Tree<String> firstTree = new Tree<>("A");
         firstTree.addChild("B");
         firstTree.addChild("C");
-        Iterator<String> iterator = firstTree.iterator(Tree.dfsOrBfs.DFS);
+        Iterator<String> iterator = firstTree.iterator(Tree.Type.DFS);
         firstTree.addChild("D");
         assertThrows(ConcurrentModificationException.class, iterator::hasNext);
         assertThrows(ConcurrentModificationException.class, iterator::next);
