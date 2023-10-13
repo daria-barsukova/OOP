@@ -102,7 +102,7 @@ public class Tests {
         treeE.addChild("H");
         treeE.addChild("K");
         String[] array = {"A", "B", "C", "D", "E", "F", "G", "H", "K"};
-        Iterator<String> iter = treeA.iterator(Tree.type.BFS);
+        Iterator<String> iter = treeA.iterator(Tree.IterationType.BFS);
         for (String s : array) {
             assertTrue(iter.hasNext());
             assertEquals(iter.next(), s);
@@ -122,7 +122,7 @@ public class Tests {
         treeE.addChild(8);
         treeE.addChild(9);
         Integer[] array = {4, 2, 3, 10, 7, 5, 8, 9, 1, 6};
-        Iterator<Integer> iterator = treeA.iterator(Tree.type.DFS);
+        Iterator<Integer> iterator = treeA.iterator(Tree.IterationType.DFS);
         for (Integer s : array) {
             assertTrue(iterator.hasNext());
             assertEquals(iterator.next(), s);
@@ -134,7 +134,7 @@ public class Tests {
         Tree<String> firstTree = new Tree<>("A");
         firstTree.addChild("B");
         firstTree.addChild("C");
-        Iterator<String> iterator = firstTree.iterator(Tree.type.DFS);
+        Iterator<String> iterator = firstTree.iterator(Tree.IterationType.DFS);
         firstTree.addChild("D");
         assertThrows(ConcurrentModificationException.class, iterator::hasNext);
         assertThrows(ConcurrentModificationException.class, iterator::next);

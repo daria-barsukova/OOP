@@ -19,7 +19,7 @@ public class Tree<T> implements Iterable<T> {
     /**
      * type of crawl.
      */
-    public enum type {
+    public enum IterationType {
         DFS, BFS
     }
 
@@ -165,7 +165,7 @@ public class Tree<T> implements Iterable<T> {
      *
      * @param type type of crawl.
      */
-    public Iterator<T> iterator(type type) {
+    public Iterator<T> iterator(IterationType type) {
         return new Iterate<>(this, type);
     }
 
@@ -174,7 +174,7 @@ public class Tree<T> implements Iterable<T> {
      */
     @Override
     public Iterator<T> iterator() {
-        return new Iterate<>(this, type.DFS);
+        return new Iterate<>(this, IterationType.DFS);
     }
 
     /**
@@ -186,7 +186,7 @@ public class Tree<T> implements Iterable<T> {
         private final int numberOfIterations;
         private final Tree<U> root;
         private final ArrayList<Tree<U>> nodes;
-        Tree.type type;
+        IterationType type;
 
         /**
          * creating iterator, filling in list of nodes.
@@ -194,7 +194,7 @@ public class Tree<T> implements Iterable<T> {
          * @param tree iterated tree.
          * @param type of crawl.
          */
-        public Iterate(Tree<U> tree, Tree.type type) {
+        public Iterate(Tree<U> tree, IterationType type) {
             this.nodes = new ArrayList<>();
             this.type = type;
             nodes.add(tree);
@@ -221,7 +221,7 @@ public class Tree<T> implements Iterable<T> {
             if (root.numberOfIterations > this.numberOfIterations) {
                 throw new ConcurrentModificationException();
             }
-            if (type == Tree.type.DFS) {
+            if (type == IterationType.DFS) {
                 Tree<U> currentNode = nodes.get(0);
                 nodes.remove(0);
                 nodes.addAll(0, currentNode.getDescendant());
