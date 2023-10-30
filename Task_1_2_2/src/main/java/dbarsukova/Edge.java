@@ -4,7 +4,6 @@ package dbarsukova;
  * Class for interacting with edges.
  */
 public class Edge {
-    private final Vertex<?> from;
     private final Vertex<?> to;
     private int weight;
 
@@ -17,7 +16,6 @@ public class Edge {
      */
     public Edge(int weight, Vertex<?> start, Vertex<?> end) {
         this.weight = weight;
-        this.from = start;
         this.to = end;
     }
 
@@ -35,13 +33,6 @@ public class Edge {
      */
     public void setWeight(int w) {
         this.weight = w;
-    }
-
-    /**
-     * getting edge start name.
-     */
-    public Vertex<?> getStart() {
-        return this.from;
     }
 
     /**

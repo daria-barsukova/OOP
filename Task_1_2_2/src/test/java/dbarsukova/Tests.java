@@ -1,6 +1,5 @@
 package dbarsukova;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class Tests {
 
     @Test
-    public void test1() throws FileNotFoundException {
+    public void test1() {
         Graph<String> graph = new Reader().readGraph("src/test/java/dbarsukova/incidence_matrix.txt", Reader.TypePresentation.INC_MATRIX);
         Assertions.assertTrue(graph.hasVertex("a"));
         Assertions.assertTrue(graph.hasVertex("b"));
@@ -28,7 +27,7 @@ public class Tests {
 
 
     @Test
-    public void test2() throws FileNotFoundException {
+    public void test2() {
         Graph<String> graph = new Reader().readGraph("src/test/java/dbarsukova/incidence_matrix.txt", Reader.TypePresentation.INC_MATRIX);
         Assertions.assertEquals(graph.getSmallestWeight("a", "d"), 6);
         Assertions.assertEquals(graph.getSmallestWeight("e", "d"), 17);
@@ -51,14 +50,14 @@ public class Tests {
     }
 
     @Test
-    public void test3() throws FileNotFoundException {
+    public void test3() {
         Graph<String> graph = new Reader().readGraph("src/test/java/dbarsukova/incidence_matrix.txt", Reader.TypePresentation.INC_MATRIX);
         Assertions.assertEquals(graph.getShortestPath("a", "f"), "f 15←--e 10←--d 6←--c 3←--b 1←--a 0");
         Assertions.assertEquals(graph.sortVertex("a"), "a(0) b(1) c(3) d(6) e(10) f(15) ");
     }
 
     @Test
-    public void test4() throws FileNotFoundException {
+    public void test4() {
         Graph<String> graph = new Reader().readGraph("src/test/java/dbarsukova/adjacency_matrix.txt", Reader.TypePresentation.ADJ_MATRIX);
         Assertions.assertTrue(graph.hasVertex("a"));
         Assertions.assertTrue(graph.hasVertex("b"));
@@ -74,7 +73,7 @@ public class Tests {
     }
 
     @Test
-    public void test5() throws FileNotFoundException {
+    public void test5() {
         Graph<String> graph = new Reader().readGraph("src/test/java/dbarsukova/adjacency_list.txt", Reader.TypePresentation.ADJ_LIST);
         Assertions.assertTrue(graph.hasVertex("a"));
         Assertions.assertTrue(graph.hasVertex("b"));

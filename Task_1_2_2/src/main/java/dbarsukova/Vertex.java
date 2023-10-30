@@ -68,10 +68,6 @@ public class Vertex<T> implements Comparable<Vertex<T>> {
         return this.start;
     }
 
-    protected List<Edge> getEnd() {
-        return this.end;
-    }
-
     protected void addEdgeStart(Edge edge) {
         this.start.add(edge);
     }
@@ -95,19 +91,6 @@ public class Vertex<T> implements Comparable<Vertex<T>> {
     @Override
     public int compareTo(Vertex<T> obj) {
         return Integer.compare(this.weight, obj.weight);
-    }
-
-    /**
-     * deleting vertex and its incident edges.
-     */
-    public boolean removeVertex() {
-        for (Edge edge : this.start) {
-            edge.getEdgeEnd().end.remove(edge);
-        }
-        for (Edge edge : this.end) {
-            edge.getStart().start.remove(edge);
-        }
-        return true;
     }
 
     /**

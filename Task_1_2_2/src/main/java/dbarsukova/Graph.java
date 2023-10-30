@@ -73,21 +73,6 @@ public class Graph<T> implements Iterable<Vertex<T>> {
     }
 
     /**
-     * deleting a vertex and its incident edges.
-     *
-     * @param name vertex name.
-     */
-    public boolean removeVertex(T name) {
-        Vertex<T> vertex = defineVertex(name);
-        if (vertex == null) {
-            return false;
-        }
-        counter += vertex.getStart().size() + vertex.getEnd().size() + 1;
-        vertices.remove(vertex);
-        return vertex.removeVertex();
-    }
-
-    /**
      * checking for presence of a vertex in graph.
      *
      * @param name vertex name.
