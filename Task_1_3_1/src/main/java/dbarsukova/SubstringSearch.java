@@ -24,12 +24,13 @@ public class SubstringSearch {
         String substring = new String(searchString.getBytes(), StandardCharsets.UTF_8);
         List<Integer[]> arrayOfIndexes = new ArrayList<>();
         int symbol;
-        int flag = 1;
+        int flag;
         int line = 0;
         int index = 0;
         int savedIndex;
         int length = substring.length();
         while ((symbol = fileName.read()) != -1) {
+            flag = 1;
             if (symbol == '\n') {
                 line++;
                 index = 0;
