@@ -23,8 +23,8 @@ public class StringTests {
         expected.add(new Integer[]{0, 1});
         expected.add(new Integer[]{0, 8});
         try (Reader file = new BufferedReader(new InputStreamReader(
-                Objects.requireNonNull(getClass().getClassLoader().
-                        getResourceAsStream("test1.txt")), UTF_8))) {
+                Objects.requireNonNull(getClass().getClassLoader()
+                        .getResourceAsStream("test1.txt")), UTF_8))) {
             actual = SubstringSearch.search(file, "бра");
         }
         for (int i = 0; i < expected.size(); i++) {

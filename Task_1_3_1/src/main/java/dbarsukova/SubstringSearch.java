@@ -24,8 +24,10 @@ public class SubstringSearch {
         String substring = new String(searchString.getBytes(), StandardCharsets.UTF_8);
         List<Integer[]> arrayOfIndexes = new ArrayList<>();
         int symbol;
-        int index = 0;
+        int flag = 1;
         int line = 0;
+        int index = 0;
+        int savedIndex;
         int length = substring.length();
         while ((symbol = fileName.read()) != -1) {
             if (symbol == '\n') {
@@ -33,16 +35,19 @@ public class SubstringSearch {
                 index = 0;
             } else if (symbol == substring.charAt(0)) {
                 fileName.mark(length);
-                int savedIndex = index;
+                savedIndex = index;
                 for (int i = 1; i < length; i++) {
                     index++;
                     if ((fileName.read()) != substring.charAt(i)) {
+                        flag = 0;
                         break;
                     }
                 }
-                arrayOfIndexes.add(new Integer[]{line, index - length + 1});
-                fileName.reset();
-                index = savedIndex + 1;
+                if (flag == 1) {
+                    arrayOfIndexes.add(new Integer[]{line, index - length + 1});
+                    fileName.reset();
+                    index = savedIndex + 1;
+                }
             } else {
                 index++;
             }
