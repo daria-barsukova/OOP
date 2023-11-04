@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"dbarsukova","c":"SubstringSearch","l":"search(Reader, String)","url":"search(java.io.Reader,java.lang.String)"},{"p":"dbarsukova","c":"SubstringSearch","l":"SubstringSearch()","url":"%3Cinit%3E()"}]
