@@ -43,29 +43,4 @@ public class StringTests {
         }
         Assertions.assertEquals(0, actual.size());
     }
-
-    /*@Test
-    public void test3() throws IOException {
-        List<Integer[]> expected = new ArrayList<>();
-        List<Integer[]> actual;
-        expected.add(new Integer[]{0, 0});
-        expected.add(new Integer[]{0, 1});
-        expected.add(new Integer[]{0, 2});
-        expected.add(new Integer[]{0, 3});
-        expected.add(new Integer[]{0, 4});
-        expected.add(new Integer[]{0, 5});
-        expected.add(new Integer[]{0, 6});
-        expected.add(new Integer[]{0, 7});
-        expected.add(new Integer[]{0, 8});
-        expected.add(new Integer[]{1, 0});
-        try (Reader file = new BufferedReader(new InputStreamReader(
-                Objects.requireNonNull(getClass().getClassLoader()
-                        .getResourceAsStream("test3.txt")), UTF_8))) {
-            actual = SubstringSearch.search(file, "AA");
-        }
-        for (int i = 0; i < expected.size(); i++) {
-            Assertions.assertEquals(expected.get(i)[0], actual.get(i)[0]);
-            Assertions.assertEquals(expected.get(i)[1], actual.get(i)[1]);
-        }
-    }*/
 }
