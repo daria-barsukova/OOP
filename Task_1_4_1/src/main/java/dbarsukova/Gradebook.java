@@ -35,6 +35,8 @@ public class Gradebook {
     }
 
     /**
+     * adding entry to gradebook.
+     *
      * @param note entry in gradebook.
      */
     public void addNote(Note note) {
@@ -42,6 +44,8 @@ public class Gradebook {
     }
 
     /**
+     * adding entry to gradebook.
+     *
      * @param subject subject for which mark is set
      * @param teacher teacher of subject
      * @param mark mark
@@ -65,7 +69,6 @@ public class Gradebook {
 
     /**
      * possibility of obtaining a "red" diploma with honors.
-     * <p>
      * requirements for diploma with honors: 75% of grades in diploma supplement
      * (the last grade) are excellent, absence of final grades is satisfactory and
      * qualification work is excellent.

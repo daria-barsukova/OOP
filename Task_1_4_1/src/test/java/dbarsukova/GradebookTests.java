@@ -34,6 +34,7 @@ public class GradebookTests {
         assertTrue(gradebook.averageMark() - 4.75 < 0.01);
         assertTrue(gradebook.possibilityOfRedDiploma());
         assertFalse(gradebook.possibilityOfIncreasedScholarship());
-        assertEquals("Gradebook number: 220636\nStudent: Daria Barsukova\nFaculty: FIT\n", gradebook.toString());
+        assertEquals("Gradebook number: 220636\nStudent: Daria Barsukova\nFaculty: FIT\n",
+                gradebook.toString());
     }
 }
