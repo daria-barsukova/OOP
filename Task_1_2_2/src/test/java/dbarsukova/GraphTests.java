@@ -107,11 +107,11 @@ public class GraphTests {
         Reader.read(graph, "/TestGraph.txt");
         Vertex<String> v = graph.getVertex("C");
         Map<String, Integer> expected = new HashMap<>();
-        Map<String, Integer> vrts = SortByDistanceFromVertex.sort(v, graph);
         expected.put("A", 14);
         expected.put("B", 10);
         expected.put("C", 0);
         expected.put("D", 2);
+        Map<String, Integer> vrts = SortByDistanceFromVertex.sort(v, graph);
         Assertions.assertEquals(expected, vrts);
     }
 
@@ -121,11 +121,11 @@ public class GraphTests {
         Reader.read(graph, "/TestGraph.txt");
         Vertex<String> v = graph.getVertex("C");
         Map<String, Integer> expected = new HashMap<>();
-        Map<String, Integer> vrts = SortByDistanceFromVertex.sort(v, graph);
         expected.put("A", 14);
         expected.put("B", 10);
         expected.put("C", 0);
         expected.put("D", 2);
+        Map<String, Integer> vrts = SortByDistanceFromVertex.sort(v, graph);
         Assertions.assertEquals(expected, vrts);
     }
 
@@ -135,11 +135,11 @@ public class GraphTests {
         Reader.read(graph, "/TestGraph.txt");
         Vertex<String> v = graph.getVertex("C");
         Map<String, Integer> expected = new HashMap<>();
-        Map<String, Integer> vrts = SortByDistanceFromVertex.sort(v, graph);
         expected.put("A", 14);
         expected.put("B", 10);
         expected.put("C", 0);
         expected.put("D", 2);
+        Map<String, Integer> vrts = SortByDistanceFromVertex.sort(v, graph);
         Assertions.assertEquals(expected, vrts);
     }
 }
