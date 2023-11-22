@@ -46,7 +46,7 @@ public class AdjacencyMatrix<V, E extends Number> implements Graph<V, E> {
 
     @Override
     public void removeEdge(Edge<V, E> e) {
-        matrix.get(e.from()).remove(e.to());
+        matrix.get(e.getFrom()).remove(e.getTo());
         --numOfEdg;
     }
 

@@ -88,7 +88,7 @@ public class IncidenceMatrix<V, E extends Number> implements Graph<V, E> {
     @Override
     public Edge<V, E> getEdge(Vertex<V> from, Vertex<V> to) {
         for (Edge<V, E> edg : matrix.get(from).keySet()) {
-            if (edg.to().getData().equals(to.getData())) {
+            if (edg.getTo().getData().equals(to.getData())) {
                 return edg;
             }
         }

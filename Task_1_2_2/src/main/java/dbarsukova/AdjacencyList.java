@@ -16,8 +16,7 @@ public class AdjacencyList<V, E extends Number> implements Graph<V, E> {
     private int numOfVert;
     private int numOfEdg;
 
-    private record Pair<X, Y>(X one, Y two) {
-    }
+
 
     /**
      * creating an empty adjacency list.
@@ -36,7 +35,7 @@ public class AdjacencyList<V, E extends Number> implements Graph<V, E> {
 
     @Override
     public void removeVertex(Vertex<V> v) {
-        map.values().forEach(list -> list.removeIf(tuple -> tuple.two().getData().equals(v.getData())));
+        map.values().forEach(list -> list.removeIf(pair -> pair.getTwo().getData().equals(v.getData())));
         map.remove(v);
         --numOfVert;
     }
@@ -49,7 +48,7 @@ public class AdjacencyList<V, E extends Number> implements Graph<V, E> {
 
     @Override
     public void removeEdge(Edge<V, E> e) {
-        map.get(e.from()).removeIf(t -> (t.one().to().getData().equals(e.to().getData())));
+        map.get(e.getFrom()).removeIf(pair -> (pair.getOne().getTo().getData().equals(e.getTo().getData())));
         --numOfEdg;
     }
 
@@ -62,8 +61,8 @@ public class AdjacencyList<V, E extends Number> implements Graph<V, E> {
     public List<Edge<V, E>> getEdge() {
         Set<Edge<V, E>> set = new HashSet<>();
         for (Vertex<V> vert : map.keySet()) {
-            for (Pair<Edge<V, E>, Vertex<V>> t : map.get(vert)) {
-                set.add(t.one());
+            for (Pair<Edge<V, E>, Vertex<V>> pair : map.get(vert)) {
+                set.add(pair.getOne());
             }
         }
         return new ArrayList<>(set);
@@ -84,9 +83,9 @@ public class AdjacencyList<V, E extends Number> implements Graph<V, E> {
 
     @Override
     public Edge<V, E> getEdge(Vertex<V> from, Vertex<V> to) {
-        for (Pair<Edge<V, E>, Vertex<V>> t : map.get(from)) {
-            if (t.one().to().getData().equals(to.getData())) {
-                return t.one();
+        for (Pair<Edge<V, E>, Vertex<V>> pair : map.get(from)) {
+            if (pair.getOne().getTo().getData().equals(to.getData())) {
+                return pair.getOne();
             }
         }
         return null;

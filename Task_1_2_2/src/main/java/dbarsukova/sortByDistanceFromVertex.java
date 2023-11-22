@@ -24,12 +24,12 @@ public class sortByDistanceFromVertex {
         sort.replace(start.getData(), 0);
         for (int i = 0; i < graph.numberOfVertices(); ++i) {
             for (Edge<V, Integer> edg : graph.getEdge()) {
-                if (sort.get(edg.from().getData()) == Integer.MAX_VALUE) {
+                if (sort.get(edg.getFrom().getData()) == Integer.MAX_VALUE) {
                     continue;
                 }
-                int temp = edg.weight() + sort.get(edg.from().getData());
-                if (sort.get(edg.to().getData()) > temp) {
-                    sort.replace(edg.to().getData(), temp);
+                int temp = edg.getWeight() + sort.get(edg.getFrom().getData());
+                if (sort.get(edg.getTo().getData()) > temp) {
+                    sort.replace(edg.getTo().getData(), temp);
                 }
             }
         }

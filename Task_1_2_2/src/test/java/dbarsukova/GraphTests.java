@@ -76,7 +76,7 @@ public class GraphTests {
         Vertex<String> v2 = graph.getVertex("D");
         Assertions.assertEquals("C", v1.getData());
         Assertions.assertEquals("D", v2.getData());
-        Assertions.assertEquals(2, graph.getEdge(v1, v2).weight());
+        Assertions.assertEquals(2, graph.getEdge(v1, v2).getWeight());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class GraphTests {
         Vertex<String> v2 = graph.getVertex("B");
         Assertions.assertEquals("A", v1.getData());
         Assertions.assertEquals("B", v2.getData());
-        Assertions.assertEquals(5, graph.getEdge(v1, v2).weight());
+        Assertions.assertEquals(5, graph.getEdge(v1, v2).getWeight());
     }
 
     @Test
@@ -98,7 +98,7 @@ public class GraphTests {
         Vertex<String> v2 = graph.getVertex("B");
         Assertions.assertEquals("A", v1.getData());
         Assertions.assertEquals("B", v2.getData());
-        Assertions.assertEquals(5, graph.getEdge(v1, v2).weight());
+        Assertions.assertEquals(5, graph.getEdge(v1, v2).getWeight());
     }
 
     @Test
