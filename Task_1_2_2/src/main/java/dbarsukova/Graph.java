@@ -18,9 +18,9 @@ public interface Graph<V, E extends Number> {
 
     Vertex<V> getVertex(V data);
 
-    Edge<V, E> getEdge(Vertex<V> from, Vertex<V> to);
-
     List<Vertex<V>> getVertex();
+
+    Edge<V, E> getEdge(Vertex<V> from, Vertex<V> to);
 
     List<Edge<V, E>> getEdge();
 
