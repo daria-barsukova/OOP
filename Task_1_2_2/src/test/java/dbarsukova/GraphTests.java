@@ -107,7 +107,7 @@ public class GraphTests {
         Reader.read(graph, "/TestGraph.txt");
         Vertex<String> v = graph.getVertex("C");
         Map<String, Integer> expected = new HashMap<>();
-        Map<String, Integer> vrts = sortByDistanceFromVertex.sort(v, graph);
+        Map<String, Integer> vrts = SortByDistanceFromVertex.sort(v, graph);
         expected.put("A", 14);
         expected.put("B", 10);
         expected.put("C", 0);
@@ -121,7 +121,7 @@ public class GraphTests {
         Reader.read(graph, "/TestGraph.txt");
         Vertex<String> v = graph.getVertex("C");
         Map<String, Integer> expected = new HashMap<>();
-        Map<String, Integer> vrts = sortByDistanceFromVertex.sort(v, graph);
+        Map<String, Integer> vrts = SortByDistanceFromVertex.sort(v, graph);
         expected.put("A", 14);
         expected.put("B", 10);
         expected.put("C", 0);
@@ -135,7 +135,7 @@ public class GraphTests {
         Reader.read(graph, "/TestGraph.txt");
         Vertex<String> v = graph.getVertex("C");
         Map<String, Integer> expected = new HashMap<>();
-        Map<String, Integer> vrts = sortByDistanceFromVertex.sort(v, graph);
+        Map<String, Integer> vrts = SortByDistanceFromVertex.sort(v, graph);
         expected.put("A", 14);
         expected.put("B", 10);
         expected.put("C", 0);

@@ -20,7 +20,8 @@ public class Reader {
      */
     public static void read(Graph<String, Integer> graph, String path) {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(Reader.class.getResourceAsStream(path))));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects
+                    .requireNonNull(Reader.class.getResourceAsStream(path))));
             String line = reader.readLine();
             String[] number = line.split(" ");
             line = reader.readLine();

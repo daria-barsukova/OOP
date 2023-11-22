@@ -58,17 +58,6 @@ public class AdjacencyList<V, E extends Number> implements Graph<V, E> {
     }
 
     @Override
-    public List<Edge<V, E>> getEdge() {
-        Set<Edge<V, E>> set = new HashSet<>();
-        for (Vertex<V> vert : map.keySet()) {
-            for (Pair<Edge<V, E>, Vertex<V>> pair : map.get(vert)) {
-                set.add(pair.getOne());
-            }
-        }
-        return new ArrayList<>(set);
-    }
-
-    @Override
     public Vertex<V> getVertex(V data) throws NullPointerException {
         if (data == null) {
             throw new NullPointerException("Vertex must be specified");
@@ -79,6 +68,17 @@ public class AdjacencyList<V, E extends Number> implements Graph<V, E> {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<Edge<V, E>> getEdge() {
+        Set<Edge<V, E>> set = new HashSet<>();
+        for (Vertex<V> vert : map.keySet()) {
+            for (Pair<Edge<V, E>, Vertex<V>> pair : map.get(vert)) {
+                set.add(pair.getOne());
+            }
+        }
+        return new ArrayList<>(set);
     }
 
     @Override

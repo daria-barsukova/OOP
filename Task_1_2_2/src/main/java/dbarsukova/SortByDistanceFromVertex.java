@@ -5,10 +5,11 @@ import java.util.Map;
 
 
 /**
- * implementation of an algorithm for sorting vertices by distance from a given vertex for the created Graph object.
+ * implementation of an algorithm for sorting vertices.
+ * sorting by distance from a given vertex for the created Graph object.
  */
 
-public class sortByDistanceFromVertex {
+public class SortByDistanceFromVertex {
 
     /**
      * sorting vertices.

@@ -56,15 +56,6 @@ public class AdjacencyMatrix<V, E extends Number> implements Graph<V, E> {
     }
 
     @Override
-    public List<Edge<V, E>> getEdge() {
-        Set<Edge<V, E>> set = new HashSet<>();
-        for (Vertex<V> vert : matrix.keySet()) {
-            set.addAll(matrix.get(vert).values());
-        }
-        return new ArrayList<>(set);
-    }
-
-    @Override
     public Vertex<V> getVertex(V data) throws NullPointerException {
         if (data == null) {
             throw new NullPointerException("Vertex must be specified");
@@ -75,6 +66,15 @@ public class AdjacencyMatrix<V, E extends Number> implements Graph<V, E> {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<Edge<V, E>> getEdge() {
+        Set<Edge<V, E>> set = new HashSet<>();
+        for (Vertex<V> vert : matrix.keySet()) {
+            set.addAll(matrix.get(vert).values());
+        }
+        return new ArrayList<>(set);
     }
 
     @Override
