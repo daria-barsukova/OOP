@@ -36,18 +36,34 @@ public class Calculator {
      * @param operation operation for processing.
      */
     public static Operation parse(String operation) {
-        return switch (operation.trim()) {
-            case "sin" -> Operation.SIN;
-            case "cos" -> Operation.COS;
-            case "sqrt" -> Operation.SQRT;
-            case "+" -> Operation.SUM;
-            case "-" -> Operation.SUB;
-            case "/" -> Operation.DIV;
-            case "*" -> Operation.MUL;
-            case "log" -> Operation.LOG;
-            case "^" -> Operation.POW;
-            default -> Operation.INVALID;
-        };
+        if (operation.trim().equals("sin")) {
+            return Operation.SIN;
+        }
+        if (operation.trim().equals("cos")) {
+            return Operation.COS;
+        }
+        if (operation.trim().equals("sqrt")) {
+            return Operation.SQRT;
+        }
+        if (operation.trim().equals("+")) {
+            return Operation.SUM;
+        }
+        if (operation.trim().equals("-")) {
+            return Operation.SUB;
+        }
+        if (operation.trim().equals("/")) {
+            return Operation.DIV;
+        }
+        if (operation.trim().equals("*")) {
+            return Operation.MUL;
+        }
+        if (operation.trim().equals("log")) {
+            return Operation.LOG;
+        }
+        if (operation.trim().equals("^")) {
+            return Operation.POW;
+        }
+        return Operation.INVALID;
     }
 
     /**
@@ -57,12 +73,16 @@ public class Calculator {
      * @param number    argument.
      */
     public static double applicationOfSingleFunc(Operation operation, double number) {
-        return switch (operation) {
-            case SIN -> Math.sin(number);
-            case COS -> Math.cos(number);
-            case SQRT -> Math.sqrt(number);
-            default -> throw new IllegalArgumentException();
-        };
+        if (operation == Operation.SIN) {
+            return Math.sin(number);
+        }
+        if (operation == Operation.COS) {
+            return Math.cos(number);
+        }
+        if (operation == Operation.SQRT) {
+            return Math.sqrt(number);
+        }
+        throw new IllegalArgumentException();
     }
 
     /**
@@ -73,15 +93,25 @@ public class Calculator {
      * @param number2   second argument.
      */
     public static double applicationOfDoubleFunc(Operation operation, double number1, double number2) {
-        return switch (operation) {
-            case SUM -> number1 + number2;
-            case SUB -> number1 - number2;
-            case DIV -> number1 / number2;
-            case MUL -> number1 * number2;
-            case LOG -> Math.log(number2) / Math.log(number1);
-            case POW -> Math.pow(number1, number2);
-            default -> throw new IllegalArgumentException();
-        };
+        if (operation == Operation.SUM) {
+            return number1 + number2;
+        }
+        if (operation == Operation.SUB) {
+            return number1 - number2;
+        }
+        if (operation == Operation.DIV) {
+            return number1 / number2;
+        }
+        if (operation == Operation.MUL) {
+            return number1 * number2;
+        }
+        if (operation == Operation.LOG) {
+            return Math.log(number2) / Math.log(number1);
+        }
+        if (operation == Operation.POW) {
+            return Math.pow(number1, number2);
+        }
+        throw new IllegalArgumentException();
     }
 
     /**
