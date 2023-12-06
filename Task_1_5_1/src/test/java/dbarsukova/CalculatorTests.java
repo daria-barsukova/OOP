@@ -53,7 +53,8 @@ class CalculatorTests {
 
     @Test
     void test4() {
-        assertEquals(Math.sin(1 - 2 + 1), new Calculator().solver(new String[]{"sin", "+", "-", "1", "2", "1"}));
+        assertEquals(Math.sin(1 - 2 + 1),
+                new Calculator().solver(new String[]{"sin", "+", "-", "1", "2", "1"}));
     }
 
     @Test
@@ -63,14 +64,17 @@ class CalculatorTests {
 
     @Test
     void test6() {
-        double ans = Calculator.applicationOfDoubleFunc(Calculator.Operation.LOG, 2, Math.pow(2, 7) / (2 * 2));
+        double ans = Calculator.applicationOfDoubleFunc(Calculator.Operation.LOG,
+                2,
+                Math.pow(2, 7) / (2 * 2));
         String[] str = new String[]{"log", "2", "/", "^", "2", "7", "*", "2", "2"};
         assertEquals(ans, new Calculator().solver(str));
     }
 
     @Test
     void test7() {
-        assertEquals(Math.sin(3) + Math.cos(3. / 7.), new Calculator().strSolver("+ sin 3 cos / 3 7"));
+        assertEquals(Math.sin(3) + Math.cos(3. / 7.),
+                new Calculator().strSolver("+ sin 3 cos / 3 7"));
     }
 
     @Test

@@ -100,7 +100,9 @@ public class Calculator {
      * @param number1   first argument.
      * @param number2   second argument.
      */
-    public static double applicationOfDoubleFunc(Operation operation, double number1, double number2) {
+    public static double applicationOfDoubleFunc(Operation operation,
+                                                 double number1,
+                                                 double number2) {
         if (operation == Operation.SUM) {
             return number1 + number2;
         }
