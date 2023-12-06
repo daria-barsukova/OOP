@@ -10,8 +10,15 @@ import java.util.List;
  */
 
 public class Calculator {
-    public static final EnumSet<Operation> singleFunc = EnumSet.of(Operation.SIN, Operation.COS, Operation.SQRT);
-    public static final EnumSet<Operation> doubleFunc = EnumSet.of(Operation.SUM, Operation.SUB, Operation.MUL, Operation.DIV, Operation.POW, Operation.LOG);
+    public static final EnumSet<Operation> singleFunc = EnumSet.of(Operation.SIN,
+            Operation.COS,
+            Operation.SQRT);
+    public static final EnumSet<Operation> doubleFunc = EnumSet.of(Operation.SUM,
+            Operation.SUB,
+            Operation.MUL,
+            Operation.DIV,
+            Operation.POW,
+            Operation.LOG);
     private final List<Double> numbers = new ArrayList<>();
 
     /**
@@ -72,7 +79,8 @@ public class Calculator {
      * @param operation operation for processing.
      * @param number    argument.
      */
-    public static double applicationOfSingleFunc(Operation operation, double number) {
+    public static double applicationOfSingleFunc(Operation operation,
+                                                 double number) {
         if (operation == Operation.SIN) {
             return Math.sin(number);
         }
@@ -137,13 +145,17 @@ public class Calculator {
                     if (counter == 0) {
                         throw new IllegalArgumentException("not enough arguments");
                     }
-                    numbers.set(counter - 1, applicationOfSingleFunc(parse(data[i]), numbers.get(counter - 1)));
+                    numbers.set(counter - 1,
+                            applicationOfSingleFunc(parse(data[i]), numbers.get(counter - 1)));
                 } else if (doubleFunc.contains(parse(data[i]))) {
                     if (counter < 2) {
                         throw new IllegalArgumentException("not enough arguments");
                     }
                     --counter;
-                    numbers.set(counter - 1, applicationOfDoubleFunc(parse(data[i]), numbers.remove(counter), numbers.get(counter - 1)));
+                    numbers.set(counter - 1,
+                            applicationOfDoubleFunc(parse(data[i]),
+                                    numbers.remove(counter),
+                                    numbers.get(counter - 1)));
                 } else {
                     throw new IllegalArgumentException("invalid operation");
                 }

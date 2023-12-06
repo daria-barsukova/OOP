@@ -1,8 +1,8 @@
 package dbarsukova;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,10 +28,14 @@ class CalculatorTests {
 
     @Test
     void test2() {
-        assertEquals(Calculator.applicationOfSingleFunc(Calculator.Operation.SIN, Math.PI), Math.sin(Math.PI));
-        assertEquals(1, Calculator.applicationOfSingleFunc(Calculator.Operation.COS, 0.0));
-        assertEquals(3, Calculator.applicationOfSingleFunc(Calculator.Operation.SQRT, 9.0));
-        assertThrows(IllegalArgumentException.class, () -> Calculator.applicationOfSingleFunc(Calculator.Operation.DIV, 4));
+        assertEquals(Calculator.applicationOfSingleFunc(Calculator.Operation.SIN, Math.PI),
+                Math.sin(Math.PI));
+        assertEquals(1,
+                Calculator.applicationOfSingleFunc(Calculator.Operation.COS, 0.0));
+        assertEquals(3,
+                Calculator.applicationOfSingleFunc(Calculator.Operation.SQRT, 9.0));
+        assertThrows(IllegalArgumentException.class,
+                () -> Calculator.applicationOfSingleFunc(Calculator.Operation.DIV, 4));
     }
 
     @Test
@@ -41,7 +45,10 @@ class CalculatorTests {
         assertEquals(156, Calculator.applicationOfDoubleFunc(Calculator.Operation.MUL, 12, 13));
         assertEquals(-13.5, Calculator.applicationOfDoubleFunc(Calculator.Operation.DIV, -27, 2));
         assertEquals(3, Calculator.applicationOfDoubleFunc(Calculator.Operation.LOG, 2, 8));
-        assertThrows(IllegalArgumentException.class, () -> Calculator.applicationOfDoubleFunc(Calculator.Operation.INVALID, 4, 4));
+        assertThrows(IllegalArgumentException.class,
+                () -> Calculator.applicationOfDoubleFunc(Calculator.Operation.INVALID,
+                        4,
+                        4));
     }
 
     @Test
