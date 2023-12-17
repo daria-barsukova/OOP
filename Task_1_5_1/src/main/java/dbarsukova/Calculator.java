@@ -1,8 +1,8 @@
 package dbarsukova;
 
 import dbarsukova.Expression.Type;
-import java.util.ArrayDeque;
 import java.math.BigDecimal;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
