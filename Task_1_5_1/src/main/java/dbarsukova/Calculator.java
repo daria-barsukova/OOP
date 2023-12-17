@@ -1,7 +1,7 @@
 package dbarsukova;
 
 import dbarsukova.Expression.Type;
-import dbarsukova.Expression.Node;
+import dbarsukova.Expression.Unit;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -75,7 +75,7 @@ public class Calculator {
         return s.matches("(\\d+)(.\\d+)?%");
     }
 
-    private final Deque<Node> numbers = new ArrayDeque<>();
+    private final Deque<Unit> numbers = new ArrayDeque<>();
     private final List<String> expressions = new ArrayList<>();
 
     /**
@@ -84,7 +84,7 @@ public class Calculator {
      * @param operation operation for processing.
      */
     public void applicationOfSingleFunc(String operation) {
-        Node data = Objects.requireNonNull(numbers.pollLast());
+        Unit data = Objects.requireNonNull(numbers.pollLast());
         if (log_type(operation)) {
             data.exp().log();
         }
@@ -92,10 +92,10 @@ public class Calculator {
             data.exp().sqrt();
         }
         if (sin_type(operation)) {
-            data = new Node(data.exp().sin(), Type.Complex);
+            data = new Unit(data.exp().sin(), Type.Complex);
         }
         if (cos_type(operation)) {
-            data = new Node(data.exp().cos(), Type.Complex);
+            data = new Unit(data.exp().cos(), Type.Complex);
         }
         numbers.addLast(data);
     }
@@ -106,8 +106,8 @@ public class Calculator {
      * @param operation operation for processing.
      */
     public void applicationOfDoubleFunc(String operation) {
-        Node data1 = Objects.requireNonNull(numbers.pollLast());
-        Node data2 = Objects.requireNonNull(numbers.pollLast());
+        Unit data1 = Objects.requireNonNull(numbers.pollLast());
+        Unit data2 = Objects.requireNonNull(numbers.pollLast());
         if (sum_type(operation)) {
             data1.exp().sum(data2);
         }
@@ -134,10 +134,10 @@ public class Calculator {
      */
     public void toParser(String s) {
         if (isDouble(s)) {
-            numbers.addLast(new Node(new Complex(Double.parseDouble(s), 0), Type.Complex));
+            numbers.addLast(new Unit(new Complex(Double.parseDouble(s), 0), Type.Complex));
         }
         if (isDegree(s)) {
-            numbers.addLast(new Node(new Degree(Double.parseDouble(s.replace("%",
+            numbers.addLast(new Unit(new Degree(Double.parseDouble(s.replace("%",
                     ""))), Type.Degree));
         }
         if (isComplex(s)) {
@@ -145,12 +145,12 @@ public class Calculator {
                 s = s.replace("i", "").replace("-",
                         " -").replace("+", " ");
                 Scanner scan = new Scanner(s).useLocale(Locale.US);
-                numbers.addLast(new Node(new Complex(scan.nextDouble(),
+                numbers.addLast(new Unit(new Complex(scan.nextDouble(),
                         scan.nextDouble()), Type.Complex));
             }
             if (s.matches("(-?(\\d+(.\\d+)?))[i$]")) {
                 s = s.replace("i", "");
-                numbers.addLast(new Node(new Complex(0,
+                numbers.addLast(new Unit(new Complex(0,
                         Double.parseDouble(s)), Type.Complex));
             }
         }
@@ -162,7 +162,7 @@ public class Calculator {
      * reverse order and performs the appropriate operations
      * depending on the type of expression encountered.
      */
-    public Node solver() {
+    public Unit solver() {
         int counter = expressions.size() - 1;
         String s;
         for (int i = counter; i >= 0; i--) {

@@ -33,7 +33,7 @@ public class Degree extends Expression {
      * @param n number.
      */
     @Override
-    void sum(Node n) {
+    void sum(Unit n) {
         if (n.type().equals(Type.Complex)) {
             throw new IllegalArgumentException("illegal type");
         }
@@ -47,7 +47,7 @@ public class Degree extends Expression {
      * @param n number.
      */
     @Override
-    void sub(Node n) {
+    void sub(Unit n) {
         if (n.type().equals(Type.Complex)) {
             throw new IllegalArgumentException("illegal type");
         }
@@ -61,7 +61,7 @@ public class Degree extends Expression {
      * @param n number.
      */
     @Override
-    void mul(Node n) {
+    void mul(Unit n) {
         if (n.type().equals(Type.Degree) || n.exp().getImPrt() != 0) {
             throw new IllegalArgumentException("illegal type");
         }
@@ -75,7 +75,7 @@ public class Degree extends Expression {
      * @param n number.
      */
     @Override
-    void div(Node n) {
+    void div(Unit n) {
         if (n.type().equals(Type.Degree) || n.exp().getImPrt() != 0) {
             throw new IllegalArgumentException("illegal type");
         }
@@ -89,7 +89,7 @@ public class Degree extends Expression {
      * @param n number.
      */
     @Override
-    void pow(Node n) {
+    void pow(Unit n) {
         if (n.type().equals(Type.Degree) || n.exp().getImPrt() != 0) {
             throw new IllegalArgumentException("illegal type");
         }

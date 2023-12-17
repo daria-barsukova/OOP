@@ -10,14 +10,14 @@ public abstract class Expression {
         Complex, Degree
     }
 
-    public record Node(Expression exp, Type type) {
+    public record Unit(Expression exp, Type type) {
     }
 
     abstract Complex sin();
 
     abstract Complex cos();
 
-    abstract void pow(Node n);
+    abstract void pow(Unit n);
 
     abstract void log();
 
@@ -27,11 +27,11 @@ public abstract class Expression {
 
     abstract double getImPrt();
 
-    abstract void sum(Node n);
+    abstract void sum(Unit n);
 
-    abstract void sub(Node n);
+    abstract void sub(Unit n);
 
-    abstract void mul(Node n);
+    abstract void mul(Unit n);
 
-    abstract void div(Node n);
+    abstract void div(Unit n);
 }
