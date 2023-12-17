@@ -10,9 +10,6 @@ public abstract class Expression {
         Complex, Degree
     }
 
-    public record Unit(Expression exp, Type type) {
-    }
-
     abstract Complex sin();
 
     abstract Complex cos();
