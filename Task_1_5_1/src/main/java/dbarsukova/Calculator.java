@@ -1,8 +1,17 @@
 package dbarsukova;
 
+import dbarsukova.Expression.Type;
+import dbarsukova.Expression.Node;
+
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.EnumSet;
+import java.math.BigDecimal;
+import java.util.Deque;
 import java.util.List;
+import java.util.Locale;
+import java.util.MissingFormatArgumentException;
+import java.util.Objects;
+import java.util.Scanner;
 
 
 /**
@@ -10,172 +19,203 @@ import java.util.List;
  */
 
 public class Calculator {
-    public static final EnumSet<Operation> singleFunc = EnumSet.of(Operation.SIN,
-            Operation.COS,
-            Operation.SQRT);
-    public static final EnumSet<Operation> doubleFunc = EnumSet.of(Operation.SUM,
-            Operation.SUB,
-            Operation.MUL,
-            Operation.DIV,
-            Operation.POW,
-            Operation.LOG);
-    private final List<Double> numbers = new ArrayList<>();
-
-    /**
-     * enum contains atomic mathematical operations - single and double.
-     */
-    public enum Operation {
-        POW,
-        LOG,
-        SIN,
-        COS,
-        SQRT,
-        SUM,
-        SUB,
-        MUL,
-        DIV,
-        INVALID
+    private static boolean sin_type(String s) {
+        return s.equals("sin");
     }
 
-    /**
-     * string conversion.
-     *
-     * @param operation operation for processing.
-     */
-    public static Operation parse(String operation) {
-        if (operation.trim().equals("sin")) {
-            return Operation.SIN;
-        }
-        if (operation.trim().equals("cos")) {
-            return Operation.COS;
-        }
-        if (operation.trim().equals("sqrt")) {
-            return Operation.SQRT;
-        }
-        if (operation.trim().equals("+")) {
-            return Operation.SUM;
-        }
-        if (operation.trim().equals("-")) {
-            return Operation.SUB;
-        }
-        if (operation.trim().equals("/")) {
-            return Operation.DIV;
-        }
-        if (operation.trim().equals("*")) {
-            return Operation.MUL;
-        }
-        if (operation.trim().equals("log")) {
-            return Operation.LOG;
-        }
-        if (operation.trim().equals("^")) {
-            return Operation.POW;
-        }
-        return Operation.INVALID;
+    private static boolean cos_type(String s) {
+        return s.equals("cos");
     }
+
+    private static boolean sqrt_type(String s) {
+        return s.equals("sqrt");
+    }
+
+    private static boolean sum_type(String s) {
+        return s.equals("+");
+    }
+
+    private static boolean sub_type(String s) {
+        return s.equals("-");
+    }
+
+    private static boolean mul_type(String s) {
+        return s.equals("*");
+    }
+
+    private static boolean div_type(String s) {
+        return s.equals("/");
+    }
+
+    private static boolean pow_type(String s) {
+        return s.equals("pow");
+    }
+
+    private static boolean log_type(String s) {
+        return s.equals("log");
+    }
+
+    private static boolean singleFunc(String s) {
+        return sin_type(s) || cos_type(s) || sqrt_type(s) || log_type(s);
+    }
+
+    private static boolean doubleFunc(String s) {
+        return sum_type(s) || sub_type(s) || mul_type(s) || div_type(s) || pow_type(s);
+    }
+
+    private static boolean isDouble(String s) {
+        return s.matches("-?\\d+(.\\d+)?");
+    }
+
+    private static boolean isComplex(String s) {
+        return s.matches("(-?\\d+(.\\d+)?)?([-|+](\\d+(.\\d+)?))?[i$]");
+    }
+
+    private static boolean isDegree(String s) {
+        return s.matches("(\\d+)(.\\d+)?%");
+    }
+
+    private final Deque<Node> numbers = new ArrayDeque<>();
+    private final List<String> expressions = new ArrayList<>();
 
     /**
      * working with single functions.
      *
      * @param operation operation for processing.
-     * @param number    argument.
      */
-    public static double applicationOfSingleFunc(Operation operation,
-                                                 double number) {
-        if (operation == Operation.SIN) {
-            return Math.sin(number);
+    public void applicationOfSingleFunc(String operation) {
+        Node data = Objects.requireNonNull(numbers.pollLast());
+        if (log_type(operation)) {
+            data.exp().log();
         }
-        if (operation == Operation.COS) {
-            return Math.cos(number);
+        if (sqrt_type(operation)) {
+            data.exp().sqrt();
         }
-        if (operation == Operation.SQRT) {
-            return Math.sqrt(number);
+        if (sin_type(operation)) {
+            data = new Node(data.exp().sin(), Type.Complex);
         }
-        throw new IllegalArgumentException();
+        if (cos_type(operation)) {
+            data = new Node(data.exp().cos(), Type.Complex);
+        }
+        numbers.addLast(data);
     }
 
     /**
      * working with double functions.
      *
      * @param operation operation for processing.
-     * @param number1   first argument.
-     * @param number2   second argument.
      */
-    public static double applicationOfDoubleFunc(Operation operation,
-                                                 double number1,
-                                                 double number2) {
-        if (operation == Operation.SUM) {
-            return number1 + number2;
+    public void applicationOfDoubleFunc(String operation) {
+        Node data1 = Objects.requireNonNull(numbers.pollLast());
+        Node data2 = Objects.requireNonNull(numbers.pollLast());
+        if (sum_type(operation)) {
+            data1.exp().sum(data2);
         }
-        if (operation == Operation.SUB) {
-            return number1 - number2;
+        if (sub_type(operation)) {
+            data1.exp().sub(data2);
         }
-        if (operation == Operation.DIV) {
-            return number1 / number2;
+        if (mul_type(operation)) {
+            data1.exp().mul(data2);
         }
-        if (operation == Operation.MUL) {
-            return number1 * number2;
+        if (div_type(operation)) {
+            data1.exp().div(data2);
         }
-        if (operation == Operation.LOG) {
-            return Math.log(number2) / Math.log(number1);
+        if (pow_type(operation)) {
+            data1.exp().pow(data2);
         }
-        if (operation == Operation.POW) {
-            return Math.pow(number1, number2);
-        }
-        throw new IllegalArgumentException();
+        numbers.addLast(data1);
     }
 
     /**
-     * accepts expression as array and finds its value.
-     * throws IllegalArgumentException if
-     * empty array is supplied/operation is invalid/too few arguments.
-     * warning is displayed in the stdin if more numbers than necessary are supplied to input.
+     * converts the specified string representation of a number or complex
+     * number to the appropriate data type and adds it to the list.
      *
-     * @param data array of atomic expression elements in prefix form.
+     * @param s unparsed string.
      */
-    public Double solver(String[] data) {
-        int counter = 0;
-        int length = data.length - 1;
-        if (length == -1) {
-            throw new IllegalArgumentException("missed expression");
+    public void toParser(String s) {
+        if (isDouble(s)) {
+            numbers.addLast(new Node(new Complex(Double.parseDouble(s), 0), Type.Complex));
         }
-        for (int i = length; i != -1; --i) {
-            try {
-                numbers.add(Double.parseDouble(data[i]));
-                ++counter;
-            } catch (NumberFormatException exc) {
-                if (singleFunc.contains(parse(data[i]))) {
-                    if (counter == 0) {
-                        throw new IllegalArgumentException("not enough arguments");
-                    }
-                    numbers.set(counter - 1,
-                            applicationOfSingleFunc(parse(data[i]), numbers.get(counter - 1)));
-                } else if (doubleFunc.contains(parse(data[i]))) {
-                    if (counter < 2) {
-                        throw new IllegalArgumentException("not enough arguments");
-                    }
-                    --counter;
-                    numbers.set(counter - 1,
-                            applicationOfDoubleFunc(parse(data[i]),
-                                    numbers.remove(counter),
-                                    numbers.get(counter - 1)));
+        if (isDegree(s)) {
+            numbers.addLast(new Node(new Degree(Double.parseDouble(s.replace("%",
+                    ""))), Type.Degree));
+        }
+        if (isComplex(s)) {
+            if (s.matches("(-?\\d+(.\\d+)?)([-|+](\\d+(.\\d+)?))[i$]")) {
+                s = s.replace("i", "").replace("-",
+                        " -").replace("+", " ");
+                Scanner scan = new Scanner(s).useLocale(Locale.US);
+                numbers.addLast(new Node(new Complex(scan.nextDouble(),
+                        scan.nextDouble()), Type.Complex));
+            }
+            if (s.matches("(-?(\\d+(.\\d+)?))[i$]")) {
+                s = s.replace("i", "");
+                numbers.addLast(new Node(new Complex(0,
+                        Double.parseDouble(s)), Type.Complex));
+            }
+        }
+    }
+
+    /**
+     * solves the expression by evaluating each item in the list.
+     * method iterates through the list of expressions in
+     * reverse order and performs the appropriate operations
+     * depending on the type of expression encountered.
+     */
+    public Node solver() {
+        int counter = expressions.size() - 1;
+        String s;
+        for (int i = counter; i >= 0; i--) {
+            s = expressions.get(i);
+            if (isComplex(s) || isDegree(s) || isDouble(s)) {
+                toParser(s);
+            } else if (singleFunc(s) || doubleFunc(s)) {
+                if (singleFunc(s)) {
+                    applicationOfSingleFunc(s);
                 } else {
-                    throw new IllegalArgumentException("invalid operation");
+                    applicationOfDoubleFunc(s);
                 }
             }
         }
-        if (numbers.size() > 1) {
-            System.out.println("warning: last " + (numbers.size() - 1) + " symbols are not used");
+        if (numbers.size() != 1) {
+            throw new MissingFormatArgumentException("incorrect expression format");
         }
-        return numbers.get(counter - 1);
+        return numbers.pop();
     }
 
     /**
-     * method takes expression and evaluates it,
-     * converting string into array of strings.
+     * analyzes input string and performs various checks on each element
+     * to determine its type. if the element meets the conditions, it is
+     * added to the list of expressions.
+     * otherwise, a MissingFormatArgumentException is thrown, indicating
+     * an incorrect expression format.
+     * method uses a solver to calculate the result based on a list of
+     * expressions and returns a formatted string.
      *
-     * @param str input string.
+     * @param input input string.
      */
-    public Double strSolver(String str) {
-        return solver(str.trim().replaceAll("\\s{2,}", " ").split(" "));
+    public String parser(String input) {
+        Scanner scanner = new Scanner(input).useDelimiter("\\s+");
+        while (scanner.hasNext()) {
+            String s = scanner.next();
+            if (singleFunc(s) || doubleFunc(s) || isComplex(s) || isDegree(s) || isDouble(s)) {
+                expressions.add(s);
+            } else {
+                throw new MissingFormatArgumentException("incorrect expression format");
+            }
+        }
+        if (solver().type().equals(Type.Degree)) {
+            return BigDecimal.valueOf(solver().exp().getData()).doubleValue() + "%";
+        }
+        if (solver().exp().getImPrt() == 0) {
+            return String.valueOf(BigDecimal.valueOf(solver().exp().getData()).doubleValue());
+        }
+        if (solver().exp().getImPrt() < 0) {
+            return BigDecimal.valueOf(solver().exp().getData()).doubleValue() + "" + BigDecimal.valueOf(
+                    solver().exp().getImPrt()).doubleValue() + "i";
+        } else {
+            return BigDecimal.valueOf(solver().exp().getData()).doubleValue() + "+" + BigDecimal.valueOf(
+                    solver().exp().getImPrt()).doubleValue() + "i";
+        }
     }
 }
