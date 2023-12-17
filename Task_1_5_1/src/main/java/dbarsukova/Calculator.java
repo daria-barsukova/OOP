@@ -2,8 +2,8 @@ package dbarsukova;
 
 import dbarsukova.Expression.Type;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 import java.util.Locale;
@@ -209,11 +209,11 @@ public class Calculator {
             return String.valueOf(BigDecimal.valueOf(solver().exp().getData()).doubleValue());
         }
         if (solver().exp().getImPrt() < 0) {
-            return BigDecimal.valueOf(solver().exp().getData()).doubleValue() + "" + BigDecimal.valueOf(
-                    solver().exp().getImPrt()).doubleValue() + "i";
+            return BigDecimal.valueOf(solver().exp().getData()).doubleValue() + "" + BigDecimal
+                    .valueOf(solver().exp().getImPrt()).doubleValue() + "i";
         } else {
-            return BigDecimal.valueOf(solver().exp().getData()).doubleValue() + "+" + BigDecimal.valueOf(
-                    solver().exp().getImPrt()).doubleValue() + "i";
+            return BigDecimal.valueOf(solver().exp().getData()).doubleValue() + "+" + BigDecimal
+                    .valueOf(solver().exp().getImPrt()).doubleValue() + "i";
         }
     }
 }
