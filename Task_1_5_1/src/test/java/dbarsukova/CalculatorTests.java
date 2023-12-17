@@ -49,6 +49,34 @@ class CalculatorTests {
 
     @Test
     void test5() {
+        String res = new Calculator().parser("* 123% 245");
+        double ans = Double.parseDouble(res.replace("%", ""));
+        Assertions.assertEquals(30135, ans);
+    }
+
+    @Test
+    void test6() {
+        String res = new Calculator().parser("/ 7% 4");
+        double ans = Double.parseDouble(res.replace("%", ""));
+        Assertions.assertEquals(1.75, ans);
+    }
+
+    @Test
+    void test7() {
+        String res = new Calculator().parser("pow 5.86% 4");
+        double ans = Double.parseDouble(res.replace("%", ""));
+        Assertions.assertEquals(1179.2081281600003, ans);
+    }
+
+    @Test
+    void test8() {
+        String res = new Calculator().parser("log 75%");
+        double ans = Double.parseDouble(res.replace("%", ""));
+        Assertions.assertEquals(4.31748811353631, ans);
+    }
+
+    @Test
+    void test9() {
         Calculator calc = new Calculator();
         Exception exception = Assertions.assertThrows(IllegalArgumentException.class,
                 () -> calc.parser("+ 1% 1"));
