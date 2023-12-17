@@ -28,7 +28,7 @@ public class Complex extends Expression {
      * @param n number.
      */
     @Override
-    void sum(Unit n) {
+    void sum(Expression.Unit n) {
         if (n.type().equals(Type.Degree)) {
             throw new IllegalArgumentException("illegal types");
         }
@@ -42,7 +42,7 @@ public class Complex extends Expression {
      * @param n number.
      */
     @Override
-    void sub(Unit n) {
+    void sub(Expression.Unit n) {
         if (n.type().equals(Type.Degree)) {
             throw new IllegalArgumentException("illegal types");
         }
@@ -56,7 +56,7 @@ public class Complex extends Expression {
      * @param n number.
      */
     @Override
-    void mul(Unit n) {
+    void mul(Expression.Unit n) {
         if (n.type().equals(Type.Degree)) {
             throw new IllegalArgumentException("illegal types");
         }
@@ -71,7 +71,7 @@ public class Complex extends Expression {
      * @param n number.
      */
     @Override
-    void div(Unit n) {
+    void div(Expression.Unit n) {
         if (n.type().equals(Type.Degree) ||
                 Math.pow(n.exp().getData(), 2) + Math.pow(n.exp().getImPrt(), 2) == 0) {
             throw new IllegalArgumentException("illegal types");
@@ -90,7 +90,7 @@ public class Complex extends Expression {
      * @param n number.
      */
     @Override
-    void pow(Unit n) {
+    void pow(Expression.Unit n) {
         if (n.exp().getImPrt() == 0 && im == 0) {
             re = Math.pow(re, n.exp().getData());
         } else {
