@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"dbarsukova","l":"Calculator"},{"p":"dbarsukova","l":"Calculator.Operation"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"dbarsukova","l":"Calculator"},{"p":"dbarsukova","l":"Complex"},{"p":"dbarsukova","l":"Degree"},{"p":"dbarsukova","l":"Expression"},{"p":"dbarsukova","l":"Expression.Type"},{"p":"dbarsukova","l":"Unit"}]
