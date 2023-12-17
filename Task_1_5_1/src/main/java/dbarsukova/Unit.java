@@ -2,6 +2,9 @@ package dbarsukova;
 
 import java.util.Objects;
 
+/**
+ * class for representing a number with its type.
+ */
 public final class Unit {
     private final Expression exp;
     private final Expression.Type type;
@@ -21,11 +24,15 @@ public final class Unit {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
         var that = (Unit) obj;
-        return Objects.equals(this.exp, that.exp) &&
-                Objects.equals(this.type, that.type);
+        return Objects.equals(this.exp, that.exp)
+                && Objects.equals(this.type, that.type);
     }
 
     @Override
@@ -35,9 +42,6 @@ public final class Unit {
 
     @Override
     public String toString() {
-        return "Unit[" +
-                "exp=" + exp + ", " +
-                "type=" + type + ']';
+        return "Unit[" + "exp=" + exp + ", " + "type=" + type + ']';
     }
-
 }

@@ -72,8 +72,8 @@ public class Complex extends Expression {
      */
     @Override
     void div(Unit n) {
-        if (n.type().equals(Type.Degree) ||
-                Math.pow(n.exp().getData(), 2) + Math.pow(n.exp().getImPrt(), 2) == 0) {
+        if (n.type().equals(Type.Degree)
+                || Math.pow(n.exp().getData(), 2) + Math.pow(n.exp().getImPrt(), 2) == 0) {
             throw new IllegalArgumentException("illegal types");
         }
         double expData = n.exp().getData();

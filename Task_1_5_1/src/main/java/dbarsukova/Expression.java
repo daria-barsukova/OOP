@@ -6,6 +6,10 @@ package dbarsukova;
  */
 
 public abstract class Expression {
+
+    /**
+     * characteristics of number.
+     */
     public enum Type {
         Complex, Degree
     }

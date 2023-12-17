@@ -1,7 +1,6 @@
 package dbarsukova;
 
 import dbarsukova.Expression.Type;
-
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.math.BigDecimal;

@@ -3,7 +3,6 @@ package dbarsukova;
 import java.util.Locale;
 import java.util.Scanner;
 import org.junit.jupiter.api.Assertions;
-
 import org.junit.jupiter.api.Test;
 
 
