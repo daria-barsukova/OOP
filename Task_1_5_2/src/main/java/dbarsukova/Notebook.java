@@ -1,8 +1,8 @@
 package dbarsukova;
 
 import static dbarsukova.Handler.addNote;
-import static dbarsukova.Handler.showNote;
 import static dbarsukova.Handler.removeNote;
+import static dbarsukova.Handler.showNote;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
