@@ -10,6 +10,8 @@ import java.util.Locale;
 import java.util.MissingFormatArgumentException;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -17,6 +19,10 @@ import java.util.Scanner;
  */
 
 public class Calculator {
+    private static final Pattern DOUBLE_PATTERN = Pattern.compile("-?\\d+(.\\d+)?");
+    private static final Pattern COMPLEX_PATTERN = Pattern.compile("(-?\\d+(.\\d+)?)?([-|+](\\d+(.\\d+)?))?[i$]");
+    private static final Pattern DEGREE_PATTERN = Pattern.compile("(\\d+)(.\\d+)?%");
+
     private static boolean sin_type(String s) {
         return s.equals("sin");
     }
@@ -62,15 +68,18 @@ public class Calculator {
     }
 
     private static boolean isDouble(String s) {
-        return s.matches("-?\\d+(.\\d+)?");
+        Matcher m = DOUBLE_PATTERN.matcher(s);
+        return m.matches();
     }
 
     private static boolean isComplex(String s) {
-        return s.matches("(-?\\d+(.\\d+)?)?([-|+](\\d+(.\\d+)?))?[i$]");
+        Matcher m = COMPLEX_PATTERN.matcher(s);
+        return m.matches();
     }
 
     private static boolean isDegree(String s) {
-        return s.matches("(\\d+)(.\\d+)?%");
+        Matcher m = DEGREE_PATTERN.matcher(s);
+        return m.matches();
     }
 
     private final Deque<Unit> numbers = new ArrayDeque<>();
