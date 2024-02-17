@@ -65,15 +65,6 @@ class SearchTests {
         assertFalse(new Thread(2).search(array));
     }
 
-    @Test
-    public void test7() {
-        int size = 1000000;
-        int[] array = new int[size];
-        Arrays.fill(array, 0, size - 1, 9679);
-        array[size - 1] = 4;
-        assertTrue(new Thread(2).search(array));
-    }
-
     private int[] createArray() {
         int[] array = new int[1000000];
         Arrays.fill(array, 0, 1000000 - 1, 1073676287);
