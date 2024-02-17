@@ -3,6 +3,10 @@ package dbarsukova;
 import java.util.Arrays;
 
 
+/**
+ * parallel solution using parallelStream() method.
+ */
+
 public class Parallel extends Sequence {
     @Override
     public boolean search(int[] arr) throws NullPointerException {

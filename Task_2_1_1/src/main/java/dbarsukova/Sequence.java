@@ -6,6 +6,12 @@ package dbarsukova;
  */
 
 public class Sequence {
+
+    /**
+     * checking whether number is prime or not.
+     *
+     * @param a number.
+     */
     public boolean isPrime(int a) {
         if (a < 0) {
             return false;
@@ -24,13 +30,19 @@ public class Sequence {
         return true;
     }
 
+    /**
+     * determining if there is at least one non-simple number in array.
+     *
+     * @param array array to search for.
+     */
     public boolean search(int[] array) throws NullPointerException {
         if (array == null) {
             throw new NullPointerException();
         }
         for (int number : array) {
-            if (!isPrime(number))
+            if (!isPrime(number)) {
                 return true;
+            }
         }
         return false;
     }
