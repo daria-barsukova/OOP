@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
@@ -40,7 +38,8 @@ public class PrimeTest {
     @Test
     public void test3() throws InterruptedException {
         result = false;
-        Thread serverThread = new Thread(new ServerThread(Arrays.asList(1, 1, 1, 1, 1, 1))); // Все клиенты заняты
+        Thread serverThread;
+        serverThread = new Thread(new ServerThread(Arrays.asList(1, 1, 1, 1, 100, 1)));
         serverThread.start();
         Thread clientThread1 = new Thread(new ClientThread());
         Thread clientThread2 = new Thread(new ClientThread());
