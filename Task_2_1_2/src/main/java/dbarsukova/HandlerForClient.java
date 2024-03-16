@@ -28,7 +28,10 @@ public class HandlerForClient implements Runnable {
      * @param completedTasks atomic integer tracking number of completed tasks.
      * @param tasks          list of tasks to be processed by client.
      */
-    public HandlerForClient(Socket clientSocket, AtomicInteger clientId, AtomicInteger completedTasks, List<Integer> tasks) {
+    public HandlerForClient(Socket clientSocket,
+                            AtomicInteger clientId,
+                            AtomicInteger completedTasks,
+                            List<Integer> tasks) {
         this.clientSocket = clientSocket;
         this.clientId = clientId;
         this.completedTasks = completedTasks;

@@ -1,15 +1,15 @@
 package dbarsukova;
 
+import static dbarsukova.Server.clientId;
+import static dbarsukova.Server.completedTasks;
+import static dbarsukova.Server.tasks;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static dbarsukova.Server.clientId;
-import static dbarsukova.Server.completedTasks;
-import static dbarsukova.Server.tasks;
 
 
 /**
@@ -29,7 +29,10 @@ public class HandlerForConnections implements Runnable {
             while (!Thread.currentThread().isInterrupted()) {
                 try {
                     Socket clientSocket = serverSocket.accept();
-                    Thread clientThread = new Thread(new HandlerForClient(clientSocket, clientId, completedTasks, tasks));
+                    Thread clientThread = new Thread(new HandlerForClient(clientSocket,
+                            clientId,
+                            completedTasks,
+                            tasks));
                     clientThread.start();
                     clientThreads.add(clientThread);
                     System.out.println("New client connected");

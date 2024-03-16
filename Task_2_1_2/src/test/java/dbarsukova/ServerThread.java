@@ -1,9 +1,9 @@
 package dbarsukova;
 
+import static dbarsukova.PrimeTest.result;
+
 import java.io.IOException;
 import java.util.List;
-
-import static dbarsukova.PrimeTest.result;
 
 
 /**

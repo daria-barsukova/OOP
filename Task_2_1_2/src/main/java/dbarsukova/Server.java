@@ -20,7 +20,7 @@ public class Server {
      * @param tasks list of tasks to be processed by clients.
      * @return true if at least one task was completed successfully, false otherwise.
      * @throws IOException          if I/O error occurs.
-     * @throws InterruptedException if thread is interrupted while waiting for tasks to be completed.
+     * @throws InterruptedException if thread is interrupted.
      */
     public boolean startServer(List<Integer> tasks) throws IOException, InterruptedException {
         completedTasks.set(0);
