@@ -37,12 +37,16 @@ public class HandlerForConnections implements Runnable {
                     clientThreads.add(clientThread);
                     System.out.println("New client connected");
                     connectedClients++;
-                } catch (SocketTimeoutException ignored) {
+                } catch (SocketTimeoutException e) {
+                    System.out.println("Socket accept timeout occurred");
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
             joinClientThreads(clientThreads, connectedClients);
             serverSocket.close();
-        } catch (IOException ignored) {
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -56,7 +60,9 @@ public class HandlerForConnections implements Runnable {
         for (int i = 0; i < connectedClients; i++) {
             try {
                 clientThreads.get(i).join();
-            } catch (InterruptedException ignored) {
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.err.println("Thread interrupted while waiting for client thread to join");
             }
         }
     }
