@@ -1,5 +1,6 @@
 package dbarsukova;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -21,7 +22,7 @@ public class PrimeTest {
             assertTrue(IsPrime.isPrime(a));
         }
         for (var a : Arrays.asList(66, 88, 33, 4, 10)) {
-            Assertions.assertFalse(IsPrime.isPrime(a));
+            assertFalse(IsPrime.isPrime(a));
         }
     }
 
@@ -34,5 +35,18 @@ public class PrimeTest {
         new Thread(new ClientThread()).start();
         serverThread.join();
         assertTrue(result);
+    }
+
+    @Test
+    public void test3() throws InterruptedException {
+        result = false;
+        Thread serverThread = new Thread(new ServerThread(Arrays.asList(1, 1, 1, 1, 1, 1))); // Все клиенты заняты
+        serverThread.start();
+        Thread clientThread1 = new Thread(new ClientThread());
+        Thread clientThread2 = new Thread(new ClientThread());
+        clientThread1.start();
+        clientThread2.start();
+        serverThread.join();
+        assertFalse(result);
     }
 }
