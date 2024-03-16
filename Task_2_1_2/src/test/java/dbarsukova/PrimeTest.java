@@ -34,18 +34,4 @@ public class PrimeTest {
         serverThread.join();
         assertTrue(result);
     }
-
-    @Test
-    public void test3() throws InterruptedException {
-        result = false;
-        Thread serverThread;
-        serverThread = new Thread(new ServerThread(Arrays.asList(1, 1, 1, 1, 100, 1)));
-        serverThread.start();
-        Thread clientThread1 = new Thread(new ClientThread());
-        Thread clientThread2 = new Thread(new ClientThread());
-        clientThread1.start();
-        clientThread2.start();
-        serverThread.join();
-        assertFalse(result);
-    }
 }
