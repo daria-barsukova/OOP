@@ -24,4 +24,15 @@ public class PrimeTest {
             Assertions.assertFalse(IsPrime.isPrime(a));
         }
     }
+
+    @Test
+    public void test2() throws InterruptedException {
+        result = false;
+        Thread serverThread = new Thread(new ServerThread(Arrays.asList(6, 6, 6, 6, 6, 3)));
+        serverThread.start();
+        new Thread(new ClientThread()).start();
+        new Thread(new ClientThread()).start();
+        serverThread.join();
+        Assertions.assertTrue(result);
+    }
 }
