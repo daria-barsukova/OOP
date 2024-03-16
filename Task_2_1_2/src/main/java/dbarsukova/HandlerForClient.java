@@ -61,7 +61,7 @@ public class HandlerForClient implements Runnable {
                     running = false;
                 }
             }
-        } catch (IOException | IllegalBlockingModeException | IndexOutOfBoundsException e) {
+        } catch (IOException | IllegalBlockingModeException e) {
             handleException(currentClientId);
         }
     }
@@ -73,6 +73,5 @@ public class HandlerForClient implements Runnable {
      */
     private void handleException(int currentClientId) {
         clientId.set(currentClientId);
-        completedTasks.decrementAndGet();
     }
 }
