@@ -12,7 +12,7 @@ public class ClientThread implements Runnable {
     @Override
     public void run() {
         try {
-            Client.client();
+            Client.client(new String[]{});
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

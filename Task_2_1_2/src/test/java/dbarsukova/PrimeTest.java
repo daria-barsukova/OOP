@@ -1,11 +1,11 @@
 package dbarsukova;
 
-import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
@@ -18,7 +18,7 @@ public class PrimeTest {
     @Test
     public void test1() {
         for (var a : Arrays.asList(7, 5, 7, 13, 5, 23, 2)) {
-            Assertions.assertTrue(IsPrime.isPrime(a));
+            assertTrue(IsPrime.isPrime(a));
         }
         for (var a : Arrays.asList(66, 88, 33, 4, 10)) {
             Assertions.assertFalse(IsPrime.isPrime(a));
@@ -33,6 +33,6 @@ public class PrimeTest {
         new Thread(new ClientThread()).start();
         new Thread(new ClientThread()).start();
         serverThread.join();
-        Assertions.assertTrue(result);
+        assertTrue(result);
     }
 }
