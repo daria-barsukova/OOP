@@ -29,7 +29,8 @@ class CustomerTest {
         customersThread.start();
         try {
             Thread.sleep(1000);
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         bakers.stop();
         Assertions.assertFalse(orderQueue.isEmpty());

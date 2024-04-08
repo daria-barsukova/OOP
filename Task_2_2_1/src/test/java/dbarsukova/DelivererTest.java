@@ -41,7 +41,8 @@ class DelivererTest {
         deliverers.stream().map(Thread::new).forEach(Thread::start);
         try {
             Thread.sleep(1000);
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         deliverers.forEach(Deliverer::stop);
         Assertions.assertTrue(queue.isEmpty());
