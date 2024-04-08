@@ -2,7 +2,6 @@ package dbarsukova.application;
 
 import dbarsukova.pizzeria.Configuration;
 import dbarsukova.pizzeria.Pizzeria;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -25,7 +24,7 @@ public class Application implements Runnable {
     private final Pizzeria pizzeria;
     private final Random rand;
     private final Path path;
-    private final Charset CHARSET = StandardCharsets.UTF_8;
+    private final Charset charset = StandardCharsets.UTF_8;
 
     /**
      * constructs Application object.
@@ -50,7 +49,7 @@ public class Application implements Runnable {
             if (!Files.exists(this.path)) {
                 Files.createFile(this.path);
             }
-            Writer writer = Files.newBufferedWriter(this.path, this.CHARSET);
+            Writer writer = Files.newBufferedWriter(this.path, this.charset);
             int[] time = new int[10];
             int[] capacity = new int[10];
             Arrays.setAll(time, i -> this.rand.nextInt(1000) + 1);
@@ -70,7 +69,7 @@ public class Application implements Runnable {
     public Configuration getConfig() {
         Configuration config = new Configuration();
         try {
-            Reader reader = Files.newBufferedReader(this.path, this.CHARSET);
+            Reader reader = Files.newBufferedReader(this.path, this.charset);
             config.deserialize(reader);
             reader.close();
         } catch (IOException e) {
@@ -84,7 +83,8 @@ public class Application implements Runnable {
         this.pizzeria.start();
         try {
             Thread.sleep(1000);
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         this.pizzeria.stop();
     }

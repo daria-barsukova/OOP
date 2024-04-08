@@ -8,7 +8,9 @@ package dbarsukova.customer;
 
 public abstract class Customer implements Runnable {
     protected abstract void order();
+
     protected abstract void stop();
+
     @Override
     public void run() {
         order();

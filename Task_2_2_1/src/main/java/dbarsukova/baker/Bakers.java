@@ -2,7 +2,6 @@ package dbarsukova.baker;
 
 import dbarsukova.order.Order;
 import dbarsukova.queue.MyQueue;
-
 import java.util.Random;
 
 
@@ -43,7 +42,8 @@ public class Bakers extends Baker {
             }
             try {
                 Thread.sleep(this.rand.nextInt(100));
-            } catch (InterruptedException ignored) {
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }

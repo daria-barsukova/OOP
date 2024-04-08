@@ -2,7 +2,6 @@ package dbarsukova.customer;
 
 import dbarsukova.order.Order;
 import dbarsukova.queue.MyQueue;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -71,14 +70,16 @@ public class Deliverer extends Customer {
                 order.printState();
                 try {
                     Thread.sleep(order.getTime());
-                } catch (InterruptedException ignored) {
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
                 order.updateState();
                 order.printState();
             }
             try {
                 Thread.sleep(this.rand.nextInt(500));
-            } catch (InterruptedException ignored) {
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
