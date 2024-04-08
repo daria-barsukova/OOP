@@ -1,13 +1,15 @@
 package dbarsukova;
 
-import dbarsukova.pizzeria.Pizzeria;
-import dbarsukova.pizzeria.Configuration;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import dbarsukova.pizzeria.Configuration;
+import dbarsukova.pizzeria.Pizzeria;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -40,7 +42,11 @@ public class ConfigTest {
         int[] time = {20, 25};
         int numDeliverers = 3;
         int[] deliverersCapacity = {5, 7, 10};
-        Configuration config = new Configuration(queueCapacity, numRests, time, numDeliverers, deliverersCapacity);
+        Configuration config = new Configuration(queueCapacity,
+                numRests,
+                time,
+                numDeliverers,
+                deliverersCapacity);
         assertEquals(queueCapacity, config.getQueueCapacity());
         assertEquals(numRests, config.getNumRests());
         assertArrayEquals(time, config.getTime());
@@ -55,7 +61,11 @@ public class ConfigTest {
         int[] time = {20, 25};
         int numDeliverers = 3;
         int[] deliverersCapacity = {5, 7, 10};
-        Configuration config = new Configuration(queueCapacity, numRests, time, numDeliverers, deliverersCapacity);
+        Configuration config = new Configuration(queueCapacity,
+                numRests,
+                time,
+                numDeliverers,
+                deliverersCapacity);
         StringWriter writer = new StringWriter();
         config.serialize(writer);
         Configuration deserializedConfig = new Configuration();

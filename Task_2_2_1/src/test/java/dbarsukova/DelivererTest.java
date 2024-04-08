@@ -3,7 +3,6 @@ package dbarsukova;
 import dbarsukova.customer.Deliverer;
 import dbarsukova.order.Order;
 import dbarsukova.queue.MyQueue;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

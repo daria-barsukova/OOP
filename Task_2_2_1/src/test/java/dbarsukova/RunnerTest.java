@@ -1,9 +1,9 @@
 package dbarsukova;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import dbarsukova.application.Application;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 
 /**
