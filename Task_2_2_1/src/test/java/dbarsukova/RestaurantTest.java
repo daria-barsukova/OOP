@@ -1,19 +1,17 @@
 package dbarsukova;
 
-import dbarsukova.order.Order;
 import dbarsukova.baker.Restaurant;
+import dbarsukova.order.Order;
 import dbarsukova.queue.MyQueue;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 
 /**
