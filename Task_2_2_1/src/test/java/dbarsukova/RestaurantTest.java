@@ -32,7 +32,9 @@ class RestaurantTest {
         IntStream.range(0, 10).forEach(i -> orderQueue.add(new Order(i, rand.nextInt(1000))));
         int[] time = new int[5];
         Arrays.setAll(time, i -> rand.nextInt(1000));
-        restaurants = Arrays.stream(time).mapToObj(bakingTime -> new Restaurant(orderQueue, deliveryQueue, bakingTime)).collect(Collectors.toCollection(ArrayList::new));
+        restaurants = Arrays.stream(time)
+                .mapToObj(bakingTime -> new Restaurant(orderQueue, deliveryQueue, bakingTime))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Test
