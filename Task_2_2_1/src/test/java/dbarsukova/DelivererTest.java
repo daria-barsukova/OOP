@@ -3,16 +3,15 @@ package dbarsukova;
 import dbarsukova.customer.Deliverer;
 import dbarsukova.order.Order;
 import dbarsukova.queue.MyQueue;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -31,7 +30,9 @@ class DelivererTest {
         int[] capacity = new int[10];
         IntStream.range(0, 20).forEach(i -> queue.add(new Order(i, rand.nextInt(500))));
         Arrays.setAll(capacity, i -> rand.nextInt(5));
-        deliverers = Arrays.stream(capacity).mapToObj(delivererCapacity -> new Deliverer(queue, delivererCapacity)).collect(Collectors.toCollection(ArrayList::new));
+        deliverers = Arrays.stream(capacity)
+                .mapToObj(delivererCapacity -> new Deliverer(queue, delivererCapacity))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Test
