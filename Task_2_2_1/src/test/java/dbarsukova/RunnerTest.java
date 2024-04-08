@@ -1,36 +1,31 @@
 package dbarsukova;
+
 import dbarsukova.application.Application;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
+
+/**
+ * task-2-2-1 runner test.
+ */
 
 public class RunnerTest {
+    @Test
+    void test1() {
+        Application pizzeriaApp = new Application();
+        assertDoesNotThrow(pizzeriaApp::run);
+    }
 
-        @Test
-        void testRun() throws IOException {
-            Application pizzeriaApp = new Application();
+    @Test
+    void test2() {
+        Application pizzeriaApp = new Application();
+        assertDoesNotThrow(pizzeriaApp::createFile);
+    }
 
-            assertDoesNotThrow(pizzeriaApp::run);
-        }
-
-        @Test
-        void testCreateFile() throws IOException {
-            Application pizzeriaApp = new Application();
-
-            assertDoesNotThrow(pizzeriaApp::createFile);
-        }
-
-        @Test
-        void testGetConfigurator() throws IOException {
-            Application pizzeriaApp = new Application();
-
-            assertDoesNotThrow(pizzeriaApp::getConfig);
-        }
-
-
-
-
+    @Test
+    void test3() {
+        Application pizzeriaApp = new Application();
+        assertDoesNotThrow(pizzeriaApp::getConfig);
+    }
 }
