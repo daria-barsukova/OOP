@@ -40,20 +40,18 @@ public class Deliverer extends Customer {
      */
     @Override
     public void order() {
-        while (this.isRunning) {
+        while (this.isRunning && !Thread.interrupted()) {
             List<Order> orders = new ArrayList<>(this.capacity);
             synchronized (lock) {
                 for (int i = 0; i < this.capacity; i++) {
-                    while (this.queue.isEmpty()) {
+                    while (this.queue.isEmpty() && this.isRunning) {
                         try {
                             this.queue.waitOnEmpty();
                         } catch (InterruptedException e) {
-                            if (!this.isRunning) {
-                                break;
-                            }
+                            Thread.currentThread().interrupt();
                         }
                     }
-                    if (!this.isRunning) {
+                    if (!this.isRunning || Thread.interrupted()) {
                         break;
                     }
                     Order order = this.queue.remove();
@@ -71,7 +69,7 @@ public class Deliverer extends Customer {
                 try {
                     Thread.sleep(order.getTime());
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
                 order.updateState();
                 order.printState();
@@ -79,7 +77,7 @@ public class Deliverer extends Customer {
             try {
                 Thread.sleep(this.rand.nextInt(500));
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
     }

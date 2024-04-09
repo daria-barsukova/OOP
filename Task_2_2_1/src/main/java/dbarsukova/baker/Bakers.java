@@ -33,7 +33,10 @@ public class Bakers extends Baker {
      */
     @Override
     public void cooking() {
-        for (int i = 0; this.isRunning; i++) {
+        for (int i = 0; ; i++) {
+            if (!this.isRunning) {
+                break;
+            }
             Order order = new Order(i, rand.nextInt(1000));
             synchronized (lock) {
                 this.orderQueue.add(order);

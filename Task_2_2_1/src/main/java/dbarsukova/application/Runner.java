@@ -14,6 +14,5 @@ public class Runner {
      */
     public static void main(String[] args) {
         new Application().run();
-        System.exit(0);
     }
 }

@@ -36,17 +36,15 @@ public class Restaurant extends Baker {
      */
     @Override
     public void cooking() {
-        while (this.isRunning) {
-            while (this.orderQueue.isEmpty()) {
+        while (this.isRunning && !Thread.interrupted()) {
+            while (this.orderQueue.isEmpty() && this.isRunning) {
                 try {
                     this.orderQueue.waitOnEmpty();
                 } catch (InterruptedException e) {
-                    if (!this.isRunning) {
-                        break;
-                    }
+                    Thread.currentThread().interrupt();
                 }
             }
-            if (!this.isRunning) {
+            if (!this.isRunning || Thread.interrupted()) {
                 break;
             }
             Order order = this.orderQueue.remove();
@@ -58,18 +56,17 @@ public class Restaurant extends Baker {
             this.orderQueue.notifyForFull();
             try {
                 Thread.sleep(this.time);
-            } catch (InterruptedException ignored) {
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
-            while (this.deliveryQueue.isFull()) {
+            while (this.deliveryQueue.isFull() && this.isRunning) {
                 try {
                     this.deliveryQueue.waitOnFull();
                 } catch (InterruptedException e) {
-                    if (!this.isRunning) {
-                        break;
-                    }
+                    Thread.currentThread().interrupt();
                 }
             }
-            if (!this.isRunning) {
+            if (!this.isRunning || Thread.interrupted()) {
                 break;
             }
             this.deliveryQueue.add(order);
