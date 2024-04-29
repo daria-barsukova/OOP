@@ -256,7 +256,8 @@ public class Field {
      */
     public void spawnWall() {
         Random r = new Random();
-        int x, y;
+        int x;
+        int y;
         List<SnakeElement> wall = new ArrayList<>();
         do {
             x = r.nextInt(width - 2) + 1;

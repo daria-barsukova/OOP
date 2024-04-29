@@ -1,8 +1,8 @@
 package dbarsukova.controller;
 
-import dbarsukova.snake.Snake;
 import dbarsukova.View;
 import dbarsukova.model.Field;
+import dbarsukova.snake.Snake;
 import dbarsukova.snake.SnakeElement;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,9 +55,13 @@ public class FieldController {
     public void drawField() {
         fieldPane.getChildren().clear();
         field.getAppleElem().forEach(elem ->
-                fieldPane.getChildren().add(view.drawCircle(elem.getX(), elem.getY(), Color.BROWN)));
+                fieldPane.getChildren().add(
+                        view.drawCircle(elem.getX(), elem.getY(), Color.BROWN))
+        );
         field.getWallElem().forEach(elem ->
-                fieldPane.getChildren().add(view.drawBlock(elem.getX(), elem.getY(), Color.GRAY)));
+                fieldPane.getChildren().add(
+                        view.drawBlock(elem.getX(), elem.getY(), Color.GRAY))
+        );
         snakeNodes = drawSnake(field.getSnake());
         fieldPane.getChildren().addAll(snakeNodes);
     }

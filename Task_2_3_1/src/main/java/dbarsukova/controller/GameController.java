@@ -1,8 +1,8 @@
 package dbarsukova.controller;
 
-import dbarsukova.model.Game;
 import dbarsukova.View;
 import dbarsukova.direction.MoveDirection;
+import dbarsukova.model.Game;
 import javafx.application.Platform;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -157,6 +157,8 @@ public class GameController implements Runnable {
                         nextDir = dir;
                     }
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + dir);
             }
         }
     }

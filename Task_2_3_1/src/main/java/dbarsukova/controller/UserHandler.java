@@ -1,12 +1,12 @@
 package dbarsukova.controller;
 
 import dbarsukova.direction.MoveDirection;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 
 /**

@@ -1,7 +1,6 @@
 package dbarsukova.snake;
 
 import dbarsukova.direction.MoveDirection;
-
 import java.util.ArrayList;
 import java.util.List;
 

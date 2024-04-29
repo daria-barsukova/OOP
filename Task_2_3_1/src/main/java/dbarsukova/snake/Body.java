@@ -1,7 +1,7 @@
 package dbarsukova.snake;
 
-
 import dbarsukova.direction.MoveDirection;
+
 
 /**
  * Body class represents body segment of snake in game.
