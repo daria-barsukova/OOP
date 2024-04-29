@@ -1,9 +1,14 @@
 package dbarsukova;
 
+import java.util.Objects;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -12,11 +17,6 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import java.util.Objects;
 
 
 /**
@@ -60,7 +60,9 @@ public class View {
      * @return Node representing food element.
      */
     public Node drawCircle(int x, int y, Color color) {
-        Circle circle = new Circle((double) blockSize / 2, (double) blockSize / 2, (double) foodSize / 2);
+        Circle circle = new Circle((double) blockSize / 2,
+                (double) blockSize / 2,
+                (double) foodSize / 2);
         circle.setLayoutX(blockSize * x);
         circle.setLayoutY(blockSize * y);
         circle.setFill(color);

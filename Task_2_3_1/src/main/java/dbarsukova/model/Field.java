@@ -4,7 +4,6 @@ import dbarsukova.direction.MoveDirection;
 import dbarsukova.snake.Body;
 import dbarsukova.snake.Snake;
 import dbarsukova.snake.SnakeElement;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,7 +19,7 @@ public class Field {
     private final int height;
     private final int limit;
     private final List<SnakeElement> appleElem;
-    private final List<SnakeElement> WallElem;
+    private final List<SnakeElement> wallElem;
     private boolean[][] appleField;
     private boolean[][] wallField;
     private SnakeElement lastAdd;
@@ -44,7 +43,7 @@ public class Field {
         this.height = height;
         this.limit = limit;
         appleElem = new ArrayList<>();
-        WallElem = new ArrayList<>();
+        wallElem = new ArrayList<>();
     }
 
     /**
@@ -55,7 +54,7 @@ public class Field {
         appleField = new boolean[width][height];
         wallField = new boolean[width][height];
         appleElem.clear();
-        WallElem.clear();
+        wallElem.clear();
         generateItems(limit, this::spawnApple);
         generateItems((int) Math.min(limit * 1.5,
                 width * height - limit - snake.getLength() - 2), this::spawnWall);
@@ -162,7 +161,7 @@ public class Field {
      * @return list of SnakeElement objects representing wall points.
      */
     public List<SnakeElement> getWallElem() {
-        return WallElem;
+        return wallElem;
     }
 
     /**
@@ -213,7 +212,8 @@ public class Field {
     public boolean snakeCollision() {
         Body head = snake.getHead();
         return snake.getSnake().subList(1, snake.getLength()).stream().anyMatch(n ->
-                n.getElem().getX() == head.getElem().getX() && n.getElem().getY() == head.getElem().getY());
+                n.getElem().getX() == head.getElem().getX()
+                        && n.getElem().getY() == head.getElem().getY());
     }
 
     /**
@@ -221,8 +221,9 @@ public class Field {
      */
     public void spawnApple() {
         Random r = new Random();
-        int x, y;
+        int y;
         boolean flag;
+        int x;
         do {
             x = r.nextInt(width - 2) + 1;
             y = r.nextInt(height - 2) + 1;
@@ -273,6 +274,6 @@ public class Field {
                 break;
             }
         }
-        WallElem.addAll(wall);
+        wallElem.addAll(wall);
     }
 }
