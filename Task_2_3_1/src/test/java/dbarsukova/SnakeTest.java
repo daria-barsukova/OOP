@@ -9,6 +9,8 @@ import dbarsukova.snake.SnakeElement;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class SnakeTest {
     @Test
     public void test1() {
@@ -22,16 +24,16 @@ class SnakeTest {
     public void test2() {
         Snake snake = new Snake(5, 0, MoveDirection.LEFT);
         Body body = snake.nextNode(snake.getHead());
-        Assertions.assertEquals(2, body.getElem().getX());
-        Assertions.assertEquals(0, body.getElem().getY());
-        Assertions.assertEquals(MoveDirection.LEFT, body.getDir());
+        assertEquals(2, body.getElem().getX());
+        assertEquals(0, body.getElem().getY());
+        assertEquals(MoveDirection.LEFT, body.getDir());
         snake.changeDir(MoveDirection.DOWN);
         for (int i = 0; i < 4; i++) {
             snake.grow();
         }
-        Assertions.assertEquals(7, snake.getLength());
-        Assertions.assertEquals(4, snake.getHead().getElem().getY());
-        Assertions.assertEquals(0, snake.getTail().getElem().getY());
+        assertEquals(7, snake.getLength());
+        assertEquals(4, snake.getHead().getElem().getY());
+        assertEquals(0, snake.getTail().getElem().getY());
     }
 
     @Test
@@ -48,12 +50,42 @@ class SnakeTest {
         game.getField().getAppleField()[7][10] = true;
         game.makeStep(MoveDirection.LEFT);
         Assertions.assertTrue(game.isWin());
-        Assertions.assertEquals(1, game.getScore());
+        assertEquals(1, game.getScore());
         game.restart();
         game.getField().getWallField()[7][10] = true;
         game.getField().checkWallField(7, 10);
         game.makeStep(MoveDirection.LEFT);
         Assertions.assertTrue(game.isLoss());
-        Assertions.assertEquals(0, game.getScore());
+        assertEquals(0, game.getScore());
+    }
+
+    @Test
+    public void test4() {
+        Snake snake = new Snake(5, 5, MoveDirection.RIGHT);
+        Body head = snake.getHead();
+        Body nextNode = snake.nextNode(head);
+        assertEquals(8, nextNode.getElem().getX());
+        assertEquals(5, nextNode.getElem().getY());
+        assertEquals(MoveDirection.RIGHT, nextNode.getDir());
+    }
+
+    @Test
+    public void test5() {
+        Snake snake = new Snake(5, 5, MoveDirection.UP);
+        Body head = snake.getHead();
+        Body nextNode = snake.nextNode(head);
+        assertEquals(5, nextNode.getElem().getX());
+        assertEquals(2, nextNode.getElem().getY());
+        assertEquals(MoveDirection.UP, nextNode.getDir());
+    }
+
+    @Test
+    public void test6() {
+        Snake snake = new Snake(5, 5, MoveDirection.DOWN);
+        Body head = snake.getHead();
+        Body nextNode = snake.nextNode(head);
+        assertEquals(5, nextNode.getElem().getX());
+        assertEquals(8, nextNode.getElem().getY());
+        assertEquals(MoveDirection.DOWN, nextNode.getDir());
     }
 }
