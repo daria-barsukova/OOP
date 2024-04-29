@@ -1,5 +1,7 @@
 package dbarsukova;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import dbarsukova.direction.MoveDirection;
 import dbarsukova.model.Field;
 import dbarsukova.model.Game;
@@ -9,15 +11,16 @@ import dbarsukova.snake.SnakeElement;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SnakeTest {
     @Test
     public void test1() {
         Assertions.assertThrows(NullPointerException.class,
                 () -> new Snake(0, 0, null));
-        Assertions.assertThrows(NullPointerException.class, () -> new Snake(0, 0, MoveDirection.LEFT).changeDir(null));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Field(0, 0, 3));
+        Assertions.assertThrows(NullPointerException.class,
+                () -> new Snake(0, 0, MoveDirection.LEFT).changeDir(null));
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> new Field(0, 0, 3));
     }
 
     @Test

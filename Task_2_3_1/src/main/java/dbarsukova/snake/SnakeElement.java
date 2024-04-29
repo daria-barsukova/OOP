@@ -6,8 +6,8 @@ package dbarsukova.snake;
  */
 
 public class SnakeElement {
-    private int x;
-    private int y;
+    private int elemX;
+    private int elemY;
 
     /**
      * constructs SnakeElement object with specified coordinates.
@@ -16,8 +16,8 @@ public class SnakeElement {
      * @param y y-coordinate of snake element.
      */
     public SnakeElement(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.elemX = x;
+        this.elemY = y;
     }
 
     /**
@@ -26,7 +26,7 @@ public class SnakeElement {
      * @return x-coordinate.
      */
     public int getX() {
-        return x;
+        return elemX;
     }
 
     /**
@@ -35,7 +35,7 @@ public class SnakeElement {
      * @return y-coordinate.
      */
     public int getY() {
-        return y;
+        return elemY;
     }
 
     /**
@@ -44,7 +44,7 @@ public class SnakeElement {
      * @param x new x-coordinate.
      */
     public void setX(int x) {
-        this.x = x;
+        this.elemX = x;
     }
 
     /**
@@ -53,6 +53,6 @@ public class SnakeElement {
      * @param y new y-coordinate.
      */
     public void setY(int y) {
-        this.y = y;
+        this.elemY = y;
     }
 }

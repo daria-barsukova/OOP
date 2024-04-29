@@ -114,6 +114,8 @@ public class FieldController {
      */
     public void deleteApple(SnakeElement elem) {
         fieldPane.getChildren().removeIf(node ->
-                view.getCord((int) node.getLayoutX()) == elem.getX() && view.getCord((int) node.getLayoutY()) == elem.getY());
+                view.getCord((int) node.getLayoutX()) == elem.getX()
+                        && view.getCord((int) node.getLayoutY()) == elem.getY()
+        );
     }
 }
