@@ -1,11 +1,11 @@
 package dbarsukova.model;
 
 import dbarsukova.App;
-import groovy.lang.MetaClass;
 import groovy.lang.Binding;
 import groovy.lang.Closure;
 import groovy.lang.GroovyObjectSupport;
 import groovy.lang.GroovyShell;
+import groovy.lang.MetaClass;
 import groovy.lang.MetaProperty;
 import groovy.util.DelegatingScript;
 import java.io.IOException;

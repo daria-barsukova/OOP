@@ -2,13 +2,13 @@ package dbarsukova;
 
 import dbarsukova.controller.DslParser;
 import dbarsukova.controller.GitManager;
+import dbarsukova.controller.GradleController;
 import dbarsukova.controller.HtmlReportConstructor;
 import dbarsukova.model.Group;
 import dbarsukova.model.Student;
+import dbarsukova.model.StudentTask;
 import dbarsukova.model.Task;
 import dbarsukova.model.TestConfiguration;
-import dbarsukova.model.StudentTask;
-import dbarsukova.controller.GradleController;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
@@ -99,10 +99,13 @@ public class App {
         File testResultsDir = new File(studentTaskPath + "/build/test-results/test/");
         File testReport = getTestReport(testResultsDir);
         studentTask.setBuild(testResultsDir.getParentFile().getParentFile().isDirectory());
-        studentTask.setDocGenerated(isDocumentationGenerated(testResultsDir.getParentFile().getParentFile()));
+        studentTask.setDocGenerated(isDocumentationGenerated(testResultsDir
+                        .getParentFile()
+                        .getParentFile()));
         parseTestReport(testReport, studentTask);
         double score = calculateScore(studentTask, task);
-        studentTask.setScore(String.format("%.1f", Math.ceil((score * task.getMaxPoints()) * 2) / 2));
+        studentTask.setScore(String.format("%.1f",
+                Math.ceil((score * task.getMaxPoints()) * 2) / 2));
         task.getProgress().add(studentTask);
     }
 
@@ -137,12 +140,16 @@ public class App {
      * @param studentTask assigned task.
      * @throws DocumentException if there is error parsing XML document.
      */
-    private static void parseTestReport(File testReport, StudentTask studentTask) throws DocumentException {
+    private static void parseTestReport(File testReport, StudentTask studentTask)
+            throws DocumentException {
         SAXReader reader = new SAXReader();
         Document document = reader.read(testReport);
-        int totalTests = Integer.parseInt(document.selectSingleNode("testsuite").valueOf("@tests"));
-        int failedTests = Integer.parseInt(document.selectSingleNode("testsuite").valueOf("@failures"));
-        int ignoredTests = Integer.parseInt(document.selectSingleNode("testsuite").valueOf("@skipped"));
+        int totalTests = Integer.parseInt(document
+                .selectSingleNode("testsuite").valueOf("@tests"));
+        int failedTests = Integer.parseInt(document
+                .selectSingleNode("testsuite").valueOf("@failures"));
+        int ignoredTests = Integer.parseInt(document
+                .selectSingleNode("testsuite").valueOf("@skipped"));
         studentTask.setTestsCount(totalTests);
         studentTask.setTestsPassed(totalTests - failedTests);
         List<Node> testCases = document.selectNodes("//testcase");
@@ -164,7 +171,8 @@ public class App {
      */
     private static double calculateScore(StudentTask studentTask, Task task) {
         double score = -0.5;
-        if (studentTask.isBuild() && studentTask.isDocGenerated() && studentTask.getTestsCount() == studentTask.getTestsPassed() + studentTask.getTestsIgnored()) {
+        if (studentTask.isBuild() && studentTask.isDocGenerated()
+                && studentTask.getTestsCount() == studentTask.getTestsPassed() + studentTask.getTestsIgnored()) {
             score += 0.5;
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy").withLocale(Locale.ENGLISH);
             if (LocalDate.parse(task.getSoftDeadline(), formatter).isAfter(LocalDate.now())) {

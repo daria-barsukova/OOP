@@ -78,7 +78,8 @@ public class DslParser {
      * @return TestConfiguration object.
      * @throws URISyntaxException if URI of configuration file is invalid.
      */
-    private static TestConfiguration createTestConfiguration(String path) throws URISyntaxException {
+    private static TestConfiguration createTestConfiguration(String path)
+            throws URISyntaxException {
         TestConfiguration config = new TestConfiguration();
         config.setScriptPath(Objects.requireNonNull(App.class.getResource(path)).toURI());
         return config;
