@@ -68,9 +68,9 @@ public class HtmlReportConstructor {
         }
     }
 
-    private void writeReportToFile(Template template, String resourcesPath, String groupID) {
+    private void writeReportToFile(Template template, String resourcesPath, String groupId) {
         try (Writer file = new FileWriter(resourcesPath
-                + String.format("report%s.html", groupID))) {
+                + String.format("report%s.html", groupId))) {
             template.process(context, file);
             file.flush();
         } catch (IOException | freemarker.template.TemplateException e) {

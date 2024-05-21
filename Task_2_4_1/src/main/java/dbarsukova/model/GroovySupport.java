@@ -89,7 +89,8 @@ public class GroovySupport extends GroovyObjectSupport {
         }
     }
 
-    private Object initializePropertyValue(MetaProperty metaProperty, String name) throws ReflectiveOperationException {
+    private Object initializePropertyValue(MetaProperty metaProperty, String name)
+            throws ReflectiveOperationException {
         Object value = getProperty(name) == null
                 ? metaProperty.getType().getConstructor().newInstance()
                 : getProperty(name);
@@ -125,7 +126,8 @@ public class GroovySupport extends GroovyObjectSupport {
         script.run();
     }
 
-    private void handleCollectionProperty(MetaProperty metaProperty, Collection<?> collection) throws ReflectiveOperationException {
+    private void handleCollectionProperty(MetaProperty metaProperty, Collection<?> collection)
+            throws ReflectiveOperationException {
         ParameterizedType collectionType = (ParameterizedType) getClass()
                 .getDeclaredField(metaProperty.getName()).getGenericType();
         Class<?> itemClass = (Class<?>) collectionType.getActualTypeArguments()[0];
@@ -138,11 +140,16 @@ public class GroovySupport extends GroovyObjectSupport {
 
     @SneakyThrows
     private Collection<Object> createNewCollectionInstance(Collection<?> originalCollection) {
-        return (Collection<Object>) originalCollection.getClass().getConstructor().newInstance();
+        return (Collection<Object>) originalCollection
+                .getClass()
+                .getConstructor()
+                .newInstance();
     }
 
     @SneakyThrows
-    private void populateNewCollection(Collection<?> originalCollection, Class<?> itemClass, Collection<Object> newCollection) {
+    private void populateNewCollection(Collection<?> originalCollection,
+                                       Class<?> itemClass,
+                                       Collection<Object> newCollection) {
         for (Object item : originalCollection) {
             if (item instanceof Closure) {
                 Object newItem = itemClass.getConstructor().newInstance();

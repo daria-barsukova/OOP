@@ -172,9 +172,11 @@ public class App {
     private static double calculateScore(StudentTask studentTask, Task task) {
         double score = -0.5;
         if (studentTask.isBuild() && studentTask.isDocGenerated()
-                && studentTask.getTestsCount() == studentTask.getTestsPassed() + studentTask.getTestsIgnored()) {
+                && studentTask.getTestsCount() == studentTask.getTestsPassed()
+                + studentTask.getTestsIgnored()) {
             score += 0.5;
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy").withLocale(Locale.ENGLISH);
+            DateTimeFormatter formatter = DateTimeFormatter
+                    .ofPattern("dd-MM-yyyy").withLocale(Locale.ENGLISH);
             if (LocalDate.parse(task.getSoftDeadline(), formatter).isAfter(LocalDate.now())) {
                 studentTask.setSoftDeadline(true);
                 score += 0.5;
