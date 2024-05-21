@@ -82,7 +82,8 @@ public class GroovySupport extends GroovyObjectSupport {
         MetaClass metaClass = getMetaClass();
         for (MetaProperty metaProperty : metaClass.getProperties()) {
             Object propertyValue = getProperty(metaProperty.getName());
-            if (propertyValue instanceof Collection<?> collection) {
+            if (propertyValue instanceof Collection<?>) {
+                Collection<?> collection = (Collection<?>) propertyValue;
                 handleCollectionProperty(metaProperty, collection);
             }
         }
